@@ -2,10 +2,15 @@
     box-sizing: border-box;
 }
 
+
+
 header{
     display: flex;
     gap: 10px;
-    justify-content: space-between;
+    justify-content:space-between;
+    background-color: antiquewhite;
+    padding: 20px;
+    margin-bottom: 10px;
 }
 
 .canvas-container{
@@ -24,10 +29,32 @@ ul{
     margin: 0;
     padding: 0;
     list-style-type: none;
-     gap: 10px;
+    gap: 10px;
+    justify-content: center;
     
+}
+
+.search-img{
+    justify-self: center;
 }
 
 .hide{
     display: none;
+}
+
+
+.gallery-photo{
+    display:grid ;
+    grid-auto-flow: column;
+    grid-template-columns: repeat(4,(auto-fit, 1fr));
+    gap: 10px; 
+    justify-items: center;
+}
+
+footer{
+    grid-column: 1/-1;
+}
+
+img{
+    width: 100%;
 }

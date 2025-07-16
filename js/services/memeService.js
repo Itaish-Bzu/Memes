@@ -4,7 +4,7 @@ var gCurrMeme
 
 var gImgs = [
   { id: 1, url: 'img/1.jpg', keywords: ['funny', 'cat'] },
-  { id: 2, url: 'img/2.jpg', keywords: ['funny', 'cat'] },
+  { id: 2, url: 'img/2.jpg', keywords: ['funny', 'dog'] },
 ]
 
 var gKeywordSearchCountMap = { funny: 12, cat: 16, baby: 2 }
@@ -18,7 +18,7 @@ function getMeme() {
 }
 
 function setLineTxt(val) {
-  const { lines,selectedLineIdx:idx} = gMeme
+  const { lines,selectedLineIdx:idx} = gCurrMeme 
   lines[idx].txt = val 
 }
 
@@ -30,7 +30,7 @@ function createMeme(id){
   const meme = {
     selectedImgId: id,
     selectedLineIdx: 0, 
-    lines: [{ txt: 'Add Text Here ', size: 20, color: 'black' }]
+    lines: [{ txt: 'Add Text Here ', size: 30, color: 'black' }]
   }
    gCurrMeme = meme
 }

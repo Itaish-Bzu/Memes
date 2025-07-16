@@ -35,27 +35,38 @@ function urlToImg(url) {
 }
 
 function drawText(txt, color, size, idx) {
-  gCtx.lineWidth = 2
+  
+  gCtx.lineWidth = 1
   gCtx.strokeStyle = 'white'
-  gCtx.fillStyle = `${color}`
+  gCtx.fillStyle = color
   gCtx.font = `${size}px Arial`
   gCtx.fontWeight = `bold`
-  gCtx.textAlign = 'center'
+  gCtx.textAlign = 'right'
   gCtx.textBaseline = 'alphabetic'
 
   if (idx === 0) {
-    gCtx.fillText(txt, 300, size)
-    gCtx.strokeText(txt, 300, size)
+    gCtx.fillText(txt, gCtx.measureText(txt).width, size)
+    gCtx.strokeText(txt, gCtx.measureText(txt).width, size)
   } else if (idx === 1) {
     gCtx.fillText(txt, 100, gCanvas.height - size * 2)
     gCtx.strokeText(txt, 100, gCanvas.height - size * 2)
   } else {
-    gCtx.fillText(txt, 100, gCanvas.height / 2)
-    gCtx.strokeText(txt, 100, gCanvas.height / 2)
+    gCtx.fillText(txt, gCtx.measureText(txt).width, gCanvas.height / 2)
+    gCtx.strokeText(txt, gCtx.measureText(txt).width, gCanvas.height / 2)
   }
 }
 
 function onSetLineTxt(val) {
   setLineTxt(val)
   renderMeme()
+}
+
+function onDownland(elLink){
+   const dataUrl = gCanvas.toDataURL()
+    elLink.href = dataUrl
+
+}
+
+function onChangColor(){
+ 
 }
