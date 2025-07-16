@@ -7,6 +7,7 @@ function onInit() {
   gCanvas = document.querySelector('.canvas')
   gCtx = gCanvas.getContext('2d')
   resizeCanvas()
+  window.addEventListener('resize', resizeCanvas)
   renderMeme()
 }
 
@@ -14,11 +15,12 @@ function renderMeme() {
   const { selectedImgId: memeId, selectedLineIdx: lineIdx, lines } = getMeme()
   const { id, url, keyWords } = getImg(memeId)
   let img = urlToImg(url)
-  renderImg(img)
-  console.log(lines[lineIdx])
+  const { txt, color, size } = lines[lineIdx]
 
-  const { txt, color } = lines[lineIdx]
-  renderTxt(txt, color)
+  img.onload = () => {
+    gCtx.drawImage(img, 0, 0, gCanvas.width, gCanvas.height)
+    drawText(txt, color, size, lineIdx)
+  }
 }
 
 function resizeCanvas() {
@@ -32,17 +34,28 @@ function urlToImg(url) {
   return img
 }
 
-function renderImg(img) {
-  img.onload = () => {
-    gCtx.drawImage(img, 0, 0, gCanvas.width, gCanvas.height)
-  }
-}
+function drawText(txt, color, size, idx) {
+  gCtx.lineWidth = 2
+  gCtx.strokeStyle = 'white'
+  gCtx.fillStyle = `${color}`
+  gCtx.font = `${size}px Arial`
+  gCtx.fontWeight = `bold`
+  gCtx.textAlign = 'center'
+  gCtx.textBaseline = 'alphabetic'
 
-function renderTxt(txt, color) {
-  gCtx.illStyle = color
-  gCtx.fillText(txt, 100, 100)
+  if (idx === 0) {
+    gCtx.fillText(txt, 300, size)
+    gCtx.strokeText(txt, 300, size)
+  } else if (idx === 1) {
+    gCtx.fillText(txt, 100, gCanvas.height - size * 2)
+    gCtx.strokeText(txt, 100, gCanvas.height - size * 2)
+  } else {
+    gCtx.fillText(txt, 100, gCanvas.height / 2)
+    gCtx.strokeText(txt, 100, gCanvas.height / 2)
+  }
 }
 
 function onSetLineTxt(val) {
   setLineTxt(val)
+  renderMeme()
 }
