@@ -6,7 +6,8 @@
     <title>Meme Generator</title>
     <link rel="stylesheet" href="/css/main.css">
 </head>
-<body>
+
+<body onload="onInit()">
 <header class="main-header">
     <div class="logo">Meme Generator</div>
     <ul>
@@ -36,10 +37,13 @@
     </div>
 
     <div class="editor">
-        <canvas class="canvas" width="400" height="400"></canvas>
+        <section class="canvas-container">
+            <canvas class="canvas" width="400" height="400"></canvas>
+        </section>
+        
         <section class="canvas-editor">
             <label for="text"></label>
-            <input type="text" name="text" placeholder="Add text here">
+            <input type="text" name="text" placeholder="Add text here" oninput="onSetLineTxt(this.value)">
             <div class="tools">
                 <button>Add</button>
                 <button>move</button>
@@ -69,8 +73,6 @@
 <footer class="main-footer">
  2025
 </footer>
-
-
 
 
     <script src="/js/services/memeService.js"></script>

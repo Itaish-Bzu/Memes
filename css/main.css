@@ -1,3 +1,14 @@
 *{
     box-sizing: border-box;
 }
+
+.canvas-container{
+    min-width: 40vw;
+    background-color: brown;
+    padding-inline: 20px;
+
+}
+
+.canvas{
+    background-color: aliceblue;
+}
