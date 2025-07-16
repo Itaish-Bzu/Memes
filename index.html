@@ -7,10 +7,10 @@
     <link rel="stylesheet" href="/css/main.css">
 </head>
 
-<body onload="onInit()">
+<body onload="onInit()" >
 <header class="main-header">
     <div class="logo">Meme Generator</div>
-    <ul>
+    <ul class="options">
         <li>Gallery</li>
         <li>saved</li>
     </ul>
@@ -30,13 +30,11 @@
         </section>
 
         <section class="gallery-photo">
-            <!-- <img src="/imgs/1.jpg" alt="...">
-            <img src="/imgs/2.jpg" alt="..."> -->
         </section>
 
     </div>
 
-    <div class="editor">
+    <div class="editor" hidden >
         <section class="canvas-container">
             <canvas class="canvas" width="400" height="400"></canvas>
         </section>
@@ -76,6 +74,7 @@
 
 
     <script src="/js/services/memeService.js"></script>
-    <script src="/js/memeController.js"></script>
+    <script src="/js/controller/memeController.js"></script>
+    <script src="/js/controller/galleryController.js"></script>
 </body>
 </html>

@@ -2,13 +2,32 @@
     box-sizing: border-box;
 }
 
+header{
+    display: flex;
+    gap: 10px;
+    justify-content: space-between;
+}
+
 .canvas-container{
     min-width: 40vw;
-    background-color: brown;
-    padding-inline: 20px;
+    background-color: rgb(178, 43, 43);
+    text-align: center;
 
 }
 
 .canvas{
     background-color: aliceblue;
+    
+}
+ul{
+    display: flex;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+     gap: 10px;
+    
+}
+
+.hide{
+    display: none;
 }
