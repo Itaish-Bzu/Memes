@@ -15,7 +15,6 @@ header{
 
 .canvas-container{
     min-width: 40vw;
-    background-color: rgb(178, 43, 43);
     text-align: center;
 
 }
@@ -57,4 +56,16 @@ footer{
 
 img{
     width: 100%;
+}
+
+.color-picker{
+    position: relative;
+}
+
+.color-picker::after{
+    content: ' ';
+    position: absolute;
+height: 50px;
+background-color: brown;
+    
 }

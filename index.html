@@ -36,21 +36,21 @@
 
     <div class="editor" hidden >
         <section class="canvas-container">
-            <canvas class="canvas" width="400" height="400"></canvas>
+            <canvas class="canvas" width="400" height="400" onclick="onTextEdit(event)"></canvas>
         </section>
         
         <section class="canvas-editor">
             <label for="text"></label>
             <input type="text" name="text" placeholder="Add text here" oninput="onSetLineTxt(this.value)">
             <div class="tools">
-                <button>Add</button>
-                <button>move</button>
+                <button onclick="onAddTxt()"> + </button>
+                <button onclick="onSwitch()">↕️</button>
                 <button>🗑️</button>
             </div>
             <div class="advance-tools">
-                <button onclick="onChangColor()">🎨</button>
-                <button>A+</button>
-                <button>A-</button>
+                <input type="color" name="color" id="color" class="color-picer" oninput="onChangColor(this.value)">
+                <button onclick="onIncrease(1)">A+</button>
+                <button onclick="onIncrease(-1)">A-</button>
                 <button></button>
 
             </div>
@@ -62,7 +62,6 @@
 
 
         </section>
-
     </div>
 
 
