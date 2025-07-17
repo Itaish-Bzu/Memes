@@ -34,17 +34,23 @@
 }
 
 .advance-tools {
+    flex-wrap: wrap;
     gap: 20px;
 }
 
 
 .canvas-container{
    max-width: 400px; 
-
 }
 
-.canvas{
-    background-color: aliceblue;  
+.canvas:hover{
+    cursor: pointer;
+}
+
+.font > option{
+    text-transform: uppercase;
+    background-color: var(--clr-primary--1);
+
 }
 
 .advance-tools .color{

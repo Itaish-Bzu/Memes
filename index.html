@@ -47,19 +47,29 @@
         
          <section class="canvas-editor">
             <label for="text"></label>
-            <input type="text" name="text" placeholder="Add text here" oninput="onSetLineTxt(this.value)">
-            <div class="tools flex margin-bottom">
+            <input  type="text" name="text" placeholder="Add text here" oninput="onSetLineTxt(this.value)">
+            <div class="tools flex ">
                 <button class="btn" onclick="onAddTxt()"> + </button>
                 <button class="btn"  onclick="onSwitch()">↕️</button>
-                <button class="btn" >🗑️</button>
+                <button class="btn" onclick="onDeleted()">🗑️</button>
             </div>
-            <div class="advance-tools flex margin-bottom justify-center">
-                <input justify-content: center; type="color" name="color" id="color" class="color-picer" oninput="onChangColor(this.value)">
+            <div class="advance-tools flex justify-center">
+                <input class="color" type="color" name="color" id="color" class="color-picer" oninput="onChangColor(this.value)">
                 <button class="btn"onclick="onIncrease(1)">A+</button>
-                <button  class="btn" onclick="onIncrease(-1)">A-</button>
+                <button class="btn"onclick="onIncrease(1)">A+</button>
+                <button  class="btn" onclick="onAlignment('left')" >left</button>
+                <button  class="btn" onclick="onAlignment('end')" >right</button>
+                <button  class="btn" onclick="onAlignment('center')" >center</button>
+                <label for="font"></label>
+                <select class="font btn" name="font" id="font" onchange="onFontChange(this.value)">
+                    <option value="ariel">Ariel</option>
+                    <option value="serif">Serif</option>
+                    <option value="verdana">verdana</option>
+                    <option value="courier">courier</option>
+                </select>
 
             </div>
-            <div class="save-section">
+            <div class="save-section flex justify-center">
                 <button class="btn">Save</button>
                 <button class="btn">Share</button>
                 <a class="btn" href="#" download="my-meme" onclick="onDownland(this)">Download</a>
