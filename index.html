@@ -4,28 +4,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Meme Generator</title>
-    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="css/main.css">
 </head>
 
-<body onload="onInit()" >
-<header class="main-header">
+<body class="main-layout" onload="onInit()" >
+<header class="main-header full">
     <div class="logo">Meme Generator</div>
     <ul class="options">
-        <li>Gallery</li>
-        <li>saved</li>
+        <li><button class="btn" >Gallery</button></li>
+        <li><button class="btn">Saved</button></li>
+      
     </ul>
 </header>
 <main class="main-container">
     <div class="gallery">
         <section class="search-img">
-            <label for="search"></label>
-            <input type="text" name="search" placeholder="Search">
+            <label for="search" ></label>
+            <input class="search-gallery" type="text" name="search" placeholder="Search">
             <ul>
-                <li>Happy</li>
-                <li>Sad</li>
-                <li>Crazy</li>
-                <li>Sarcastic</li>
-                <li>Funny</li>
+                 <li><button class="btn gallery-btn">Happy</button></li>
+                 <li><button class="btn gallery-btn">Sad</button></li>
+                 <li><button class="btn gallery-btn">Crazy</button></li>
+                 <li><button class="btn gallery-btn">Sarcastic</button></li>
+                 <li><button class="btn gallery-btn">Funny</button></li>
             </ul>
         </section>
 
@@ -34,46 +35,47 @@
 
     </div>
 
-    <div class="editor" hidden >
+<div class="editor" hidden >
+    <div class="editor-section">
         <section class="canvas-container">
-            <canvas class="canvas" width="400" height="400" onclick="onTextEdit(event)"></canvas>
-        </section>
+            <canvas class="canvas" width="200" height="200" onclick="onTextEdit(event)"></canvas>
+         </section>
         
-        <section class="canvas-editor">
+         <section class="canvas-editor">
             <label for="text"></label>
             <input type="text" name="text" placeholder="Add text here" oninput="onSetLineTxt(this.value)">
-            <div class="tools">
-                <button onclick="onAddTxt()"> + </button>
-                <button onclick="onSwitch()">↕️</button>
-                <button>🗑️</button>
+            <div class="tools flex">
+                <button class="btn" onclick="onAddTxt()"> + </button>
+                <button class="btn"  onclick="onSwitch()">↕️</button>
+                <button class="btn" >🗑️</button>
             </div>
-            <div class="advance-tools">
-                <input type="color" name="color" id="color" class="color-picer" oninput="onChangColor(this.value)">
-                <button onclick="onIncrease(1)">A+</button>
-                <button onclick="onIncrease(-1)">A-</button>
-                <button></button>
+            <div class="advance-tools flex">
+                <input justify-content: center; type="color" name="color" id="color" class="color-picer" oninput="onChangColor(this.value)">
+                <button class="btn"onclick="onIncrease(1)">A+</button>
+                <button  class="btn" onclick="onIncrease(-1)">A-</button>
 
             </div>
             <div class="save-section">
-                <button>Save</button>
-                <button>Share</button>
-                <a href="#" download="my-meme" onclick="onDownland(this)">Download</a>
+                <button class="btn">Save</button>
+                <button class="btn">Share</button>
+                <a class="btn" href="#" download="my-meme" onclick="onDownland(this)">Download</a>
             </div>
-
+     
 
         </section>
     </div>
+ </div>
 
 
 </main>
     
-<footer class="main-footer">
+<footer class="main-footer full">
  2025
 </footer>
 
 
-    <script src="/js/services/memeService.js"></script>
-    <script src="/js/controller/memeController.js"></script>
-    <script src="/js/controller/galleryController.js"></script>
+    <script src="js/services/memeService.js"></script>
+    <script src="js/controller/memeController.js"></script>
+    <script src="js/controller/galleryController.js"></script>
 </body>
 </html>

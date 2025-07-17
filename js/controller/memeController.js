@@ -18,6 +18,8 @@ function renderMeme() {
   const { txt, color, size } = lines[lineIdx]
 
   img.onload = () => {
+    // gCtx.drawImage(img, 0, 0, gCanvas.width, gCanvas.height)
+     gCanvas.height = (img.naturalHeight / img.naturalWidth) * gCanvas.width
     gCtx.drawImage(img, 0, 0, gCanvas.width, gCanvas.height)
     const space = 30
     lines.forEach((line, idx) => {
@@ -26,7 +28,7 @@ function renderMeme() {
       drawText(txt, color, size, line.x, line.y)
     }) 
   }
-
+  // resizeCanvas()
 
 }
 

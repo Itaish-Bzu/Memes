@@ -19,6 +19,7 @@ function getMeme() {
 
 function setLineTxt(val) {
   const { lines, selectedLineIdx: idx } = gCurrMeme
+  console.log(idx);
   lines[idx].txt = val
 }
 

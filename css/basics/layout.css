@@ -1,0 +1,41 @@
+*{
+    box-sizing: border-box;
+}
+
+
+.main-layout{
+    display: grid;
+    grid-template-columns: 16px 1fr 16px
+}
+
+
+.main-layout>*:not(.full) {
+    grid-column: 2;
+}
+
+.main-layout>*.full {
+    grid-column: 1 / -1;
+}
+
+
+
+
+.canvas-container{
+    display: flex;
+    justify-content: center;
+    min-width: 40vw;
+    text-align: center;
+
+}
+
+.canvas{
+    background-color: aliceblue;
+    
+}
+
+
+
+
+
+
+
