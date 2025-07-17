@@ -1,6 +1,6 @@
 'use strict'
 
-var gCurrMeme
+let gCurrMeme
 
 var gImgs = [
   { id: 1, url: 'img/1.jpg', keywords: ['funny', 'cat'] },
@@ -35,7 +35,7 @@ function getMeme() {
 
 function setLineTxt(val) {
   const { lines, selectedLineIdx: idx } = gCurrMeme
-  console.log(idx);
+  console.log(idx)
   lines[idx].txt = val
 }
 
@@ -44,7 +44,7 @@ function memeServiceSetImg(imgID) {
 }
 
 function ChangColor(color) {
-  const { selectedLineIdx: idx } = gCurrMeme
+  const idx = gCurrMeme.selectedLineIdx
   gCurrMeme.lines[idx].color = color
 }
 
@@ -75,7 +75,9 @@ function createMeme(id) {
   const meme = {
     selectedImgId: id,
     selectedLineIdx: 0,
-    lines: [{ txt: 'Add Text Here ', size: 30, color: 'black' }],
+    lines: [
+      { txt: 'Add Text Here ', size: 30, color: 'black', alignment: 'left' },
+    ],
   }
   gCurrMeme = meme
 }
@@ -86,3 +88,19 @@ function getByIdx(currX) {
   const idx = lines.findIndex((line) => line.x === currX)
   return idx
 }
+
+function getAlign(position) {
+  const { lines, selectedLineIdx: idx } = getMeme()
+  lines[idx].alignment = position
+}
+
+function fontChange(val){  
+   const { lines, selectedLineIdx: idx } = getMeme()
+  lines[idx].font = val
+}
+
+function deleted(){
+  const { lines, selectedLineIdx: idx } = getMeme()
+  lines.splice(idx,1)
+}
+

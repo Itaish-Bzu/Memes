@@ -12,20 +12,21 @@ function onInit() {
 }
 
 function renderMeme() {
-  const { selectedImgId: memeId, selectedLineIdx: lineIdx, lines } = getMeme()
+  const { selectedImgId: memeId,lines } = getMeme()
   const { url } = getImg(memeId)
   let img = urlToImg(url)
-  const { txt, color, size } = lines[lineIdx]
 
   img.onload = () => {
-    // gCtx.drawImage(img, 0, 0, gCanvas.width, gCanvas.height)
      gCanvas.height = (img.naturalHeight / img.naturalWidth) * gCanvas.width
     gCtx.drawImage(img, 0, 0, gCanvas.width, gCanvas.height)
+
+
     const space = 30
     lines.forEach((line, idx) => {
       line.x = idx * space
       line.y = (idx + 1) * space
-      drawText(txt, color, size, line.x, line.y)
+       const { txt, color, size, alignment,font } = line
+      drawText(txt, color, size, line.x, line.y, alignment,font)
     }) 
   }
  
@@ -43,14 +44,14 @@ function urlToImg(url) {
   return img
 }
 
-function drawText(txt, color, size, x, y) {
+function drawText(txt, color, size, x, y,alignment='left',font='ariel') {
   gCtx.beginPath()
   gCtx.lineWidth = 1
   gCtx.strokeStyle = 'white'
   gCtx.fillStyle = color
-  gCtx.font = `${size}px Arial`
+  gCtx.font = `${size}px ${font}`
   gCtx.fontWeight = `bold`
-  gCtx.textAlign = 'left'
+  gCtx.textAlign = alignment
   gCtx.textBaseline = 'alphabetic'
 
   gCtx.fillText(txt, x, y)
@@ -106,9 +107,7 @@ drawRect(line.x,line.y-30, width, line.size + 5)
 }
 
 function onTextEdit(ev){
-  const { offsetX, offsetY } = ev
-   console.log(offsetX, offsetY );
-   
+  const { offsetX, offsetY } = ev  
   const {lines} = getMeme()
   const clickedTxt = lines.find(line => {
         const width = gCtx.measureText(line.txt).width
@@ -117,12 +116,8 @@ function onTextEdit(ev){
             offsetY >= line.x && offsetY <= line.y
         )
     })
-    console.log(clickedTxt);
-    console.log(clickedTxt.x);
-    
-     const idx = getByIdx(clickedTxt.x)
-     console.log(idx);
-     
+
+     const idx = getByIdx(clickedTxt.x)     
      
      if (clickedTxt){
     const meme = getMeme()
@@ -142,4 +137,21 @@ function toggleMenu(){
      document.querySelector('.btn-toggle').innerText = '☰'
   }
   
+}
+
+function onAlignment(position){
+  getAlign(position)
+  renderMeme()
+
+}
+
+function onFontChange(val){
+  
+ fontChange(val)
+ renderMeme()
+}
+
+function onDeleted(){
+  deleted()
+  renderMeme()
 }
