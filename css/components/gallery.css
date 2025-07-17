@@ -27,5 +27,13 @@
 }
 
 
+.gallery-photo{
+    display:grid ;
+    gap: 10px; 
+    padding-inline: 1rem;
+
+}
+
+
 
 

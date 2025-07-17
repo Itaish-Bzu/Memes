@@ -3,24 +3,25 @@
     flex-direction: column;
     gap: 20px;
     align-items: center;
-    overflow-y: auto;
-    overflow-x: hidden;
+    overflow-y: hidden;
+    overflow-x: auto;
 }
 
 .canvas-editor{
-    padding-inline: 5rem;
-    padding-block: 1.25rem;
     display: flex;
     flex-direction: column;
+    gap: 40px;
+    padding-inline: 1.25rem;
+    padding-block: 1.25rem;
     border: 2px solid white;
     border-radius: 5px;
     
 }
 
 .canvas-editor input{
-   padding: 1em;
+    padding: 1em;
     border-radius: 20px;
-    font-size: inherit;
+    font-size: 1.25;
     background-color: transparent;
     border: solid white;
 
@@ -38,11 +39,24 @@
 
 
 .canvas-container{
-    min-width: 50vw; 
+   max-width: 400px; 
 
 }
 
 .canvas{
-    background-color: aliceblue;
-    
+    background-color: aliceblue;  
 }
+
+.advance-tools .color{
+    position: relative;
+    height: 50px;
+    width: 50px;
+}
+
+.advance-tools .color::after{
+    content: '🎨';
+    position: absolute;
+    top: 6px;
+    left: 4px;
+    font-size: 25px;
+} 

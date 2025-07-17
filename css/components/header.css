@@ -1,14 +1,16 @@
 header{
     gap: 10px;
-    justify-content:space-between;
+    justify-content:space-around;
     align-items: center;
     background-color: var(--clr-primary--1);
-    padding: 1em;
-    margin-bottom: 1em;
+    padding-inline:5px ;
+    padding-block: 1em;
+    margin-bottom: 0.5em;
   
 }
 
 header  .logo{
-    font-weight:bol;
+    font-weight:bolder;
+    font-size: 1.375rem;
 
 }
