@@ -1,15 +1,14 @@
 header{
-    display: flex;
     gap: 10px;
     justify-content:space-between;
     align-items: center;
-    background-color: antiquewhite;
-    padding: 1.25em;
+    background-color: var(--clr-primary--1);
+    padding: 1em;
     margin-bottom: 1em;
   
 }
 
-header>* button{
-    background-color: antiquewhite;
-    border: solid white;
+header  .logo{
+    font-weight:bol;
+
 }

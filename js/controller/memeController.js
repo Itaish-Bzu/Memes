@@ -6,7 +6,7 @@ let gCtx
 function onInit() {
   gCanvas = document.querySelector('.canvas')
   gCtx = gCanvas.getContext('2d')
-
+  // resizeCanvas()
   window.addEventListener('resize', resizeCanvas)
   // renderMeme()
 }
@@ -28,13 +28,13 @@ function renderMeme() {
       drawText(txt, color, size, line.x, line.y)
     }) 
   }
-  // resizeCanvas()
-
+ 
 }
 
 function resizeCanvas() {
   const elContainer = document.querySelector('.canvas-container')
   gCanvas.width = elContainer.clientWidth
+  renderMeme()
 }
 
 function urlToImg(url) {
@@ -112,7 +112,6 @@ function onTextEdit(ev){
   const {lines} = getMeme()
   const clickedTxt = lines.find(line => {
         const width = gCtx.measureText(line.txt).width
-        // DONE: Find the only clicked star
         return (
             offsetX >= line.x && offsetX <= line.x + width &&
             offsetY >= line.x && offsetY <= line.y
@@ -130,4 +129,17 @@ function onTextEdit(ev){
     meme.selectedLineIdx = idx
     }else return
 
+}
+
+
+function toggleMenu(){
+  let elBody = document.querySelector('body')
+  elBody.classList.toggle('menu-open')
+
+  if (elBody.classList.contains('menu-open') ){
+      document.querySelector('.btn-toggle').innerText = 'x'
+  }else{
+     document.querySelector('.btn-toggle').innerText = '☰'
+  }
+  
 }

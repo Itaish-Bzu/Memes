@@ -4,8 +4,8 @@
 
 html {
     font-family: sans-serif;
-    color: var(--clr-primary-base);
-    background-color: var(--clr-primary-bg);
+    color: var(--clr-primary-1);
+    background-color:var(--clr-primary-base);
 }
 
 body {
@@ -31,4 +31,8 @@ img {
 
 .hide{
     display: none;
+}
+
+a{
+    text-decoration: none;
 }

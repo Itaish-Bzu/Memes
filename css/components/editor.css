@@ -1,4 +1,4 @@
-.ditor-section{
+.editor-section{
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -6,26 +6,43 @@
     overflow-y: auto;
     overflow-x: hidden;
 }
+
 .canvas-editor{
-    padding: 20px;
-    background-color: aqua;
+    padding-inline: 5rem;
+    padding-block: 1.25rem;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    border: 2px solid white;
+    border-radius: 5px;
     
 }
 
 .canvas-editor input{
-    padding: 0.5em;
+   padding: 1em;
+    border-radius: 20px;
+    font-size: inherit;
+    background-color: transparent;
+    border: solid white;
 
 }
 
 .tools{
     gap: 20px;
     justify-content: center;
-    margin-inline-start: 0.5em;
+    margin-block-start: 0.5em;
 }
 
 .advance-tools {
-    justify-content: center;
+    gap: 20px;
+}
+
+
+.canvas-container{
+    min-width: 50vw; 
+
+}
+
+.canvas{
+    background-color: aliceblue;
+    
 }

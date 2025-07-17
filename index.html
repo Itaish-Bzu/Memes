@@ -8,17 +8,21 @@
 </head>
 
 <body class="main-layout" onload="onInit()" >
-<header class="main-header full">
+<header class="main-header full flex">
     <div class="logo">Meme Generator</div>
+    <div class="main-nav">
     <ul class="options">
         <li><button class="btn" >Gallery</button></li>
         <li><button class="btn">Saved</button></li>
-      
     </ul>
+</div>
+<button class="btn btn-toggle"  onclick="toggleMenu()">☰</button>
+
+
 </header>
 <main class="main-container">
     <div class="gallery">
-        <section class="search-img">
+        <section class="search-img flex">
             <label for="search" ></label>
             <input class="search-gallery" type="text" name="search" placeholder="Search">
             <ul>
@@ -38,18 +42,18 @@
 <div class="editor" hidden >
     <div class="editor-section">
         <section class="canvas-container">
-            <canvas class="canvas" width="200" height="200" onclick="onTextEdit(event)"></canvas>
+            <canvas class="canvas" width="400" height="400" onclick="onTextEdit(event)"></canvas>
          </section>
         
          <section class="canvas-editor">
             <label for="text"></label>
             <input type="text" name="text" placeholder="Add text here" oninput="onSetLineTxt(this.value)">
-            <div class="tools flex">
+            <div class="tools flex margin-bottom">
                 <button class="btn" onclick="onAddTxt()"> + </button>
                 <button class="btn"  onclick="onSwitch()">↕️</button>
                 <button class="btn" >🗑️</button>
             </div>
-            <div class="advance-tools flex">
+            <div class="advance-tools flex margin-bottom justify-center">
                 <input justify-content: center; type="color" name="color" id="color" class="color-picer" oninput="onChangColor(this.value)">
                 <button class="btn"onclick="onIncrease(1)">A+</button>
                 <button  class="btn" onclick="onIncrease(-1)">A-</button>
@@ -69,7 +73,7 @@
 
 </main>
     
-<footer class="main-footer full">
+<footer class="main-footer full ">
  2025
 </footer>
 

@@ -1,18 +1,15 @@
 
 .gallery{
-    background-color: rgb(215, 250, 218);
-    padding: 20px;
+    padding: 1.25rem;
 }
 
 
-.search-img{
-    display: flex;
+.search-img{ 
     flex-direction: column;
     gap: 5px;
     padding-block: 1.25em;
     padding-inline: 1.25em;
     font-size: 1rem;
-
 }
 
 .gallery-btn{
@@ -29,17 +26,6 @@
     border: solid white;
 }
 
-/* .search-gallery:focus{
-    border: solid red;
-} */
 
-.gallery-photo{
-    display:grid ;
-    grid-auto-flow: row;
-    grid-template-columns: 
-    repeat(auto-fit, minmax(250px, 1fr));
-    gap: 10px; 
-     padding-inline: 20px;
-    /* justify-items: center; */
-}
+
 
