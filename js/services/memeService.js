@@ -1,7 +1,9 @@
 'use strict'
+const MEMES = 'memesDB'
+
 
 let gCurrMeme
-let gMems
+let gMems = []
 
 var gImgs = [
   { id: 1, url: 'img/1.jpg', keywords: ['funny', 'cat'] },
@@ -35,7 +37,7 @@ function getMeme() {
 }
 
 function setLineTxt(val) {
-   const line = getLine()
+  const line = getLine()
   line.txt = val
 }
 
@@ -44,7 +46,7 @@ function memeServiceSetImg(imgID) {
 }
 
 function ChangColor(color) {
-   const line = getLine()
+  const line = getLine()
   line.color = color
 }
 
@@ -63,10 +65,9 @@ function switchLine() {
   const { lines } = gCurrMeme
   const lastIdx = lines.length - 1
   gCurrMeme.selectedLineIdx--
-  
+
   if (gCurrMeme.selectedLineIdx < 0) gCurrMeme.selectedLineIdx = lastIdx
 }
-
 
 function getByIdx(currX) {
   const { lines } = gCurrMeme
@@ -75,7 +76,7 @@ function getByIdx(currX) {
 }
 
 function getAlign(position) {
- const line = getLine()
+  const line = getLine()
   line.alignment = position
 }
 
@@ -88,9 +89,7 @@ function deleted() {
   const { lines, selectedLineIdx: idx } = getMeme()
   lines.splice(idx, 1)
   gCurrMeme.selectedLineIdx--
-  
 }
-
 
 function getLine() {
   return gCurrMeme.lines[gCurrMeme.selectedLineIdx]
@@ -106,3 +105,9 @@ function createMeme(id) {
   }
   gCurrMeme = meme
 }
+
+function savingMeme() {
+  gMems.push(gCurrMeme)
+  saveToStorage(MEMES , gMems)
+}
+

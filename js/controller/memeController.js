@@ -148,3 +148,10 @@ function onDeleted() {
   deleted()
   renderMeme()
 }
+
+
+function onSave(){
+  console.log('save');
+  savingMeme()
+  
+}
