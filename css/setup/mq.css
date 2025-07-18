@@ -3,8 +3,8 @@
 
 @media(max-width: 640px){
 	.main-header .main-nav{
-		position: fixed;
-		top: 70px;
+		position: absolute;
+		top: 65px;
 		left: 0;
 		width: 100%;
 
@@ -13,7 +13,7 @@
         background-color: var(--clr-primary--1);
 
 		overflow: hidden;
-		transition: grid-template-rows 1s;
+		transition:  1s;
 		align-items: end;
 	}
 

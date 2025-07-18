@@ -1,6 +1,7 @@
 'use strict'
 
 let gCurrMeme
+let gMems
 
 var gImgs = [
   { id: 1, url: 'img/1.jpg', keywords: ['funny', 'cat'] },
@@ -34,9 +35,8 @@ function getMeme() {
 }
 
 function setLineTxt(val) {
-  const { lines, selectedLineIdx: idx } = gCurrMeme
-  console.log(idx)
-  lines[idx].txt = val
+   const line = getLine()
+  line.txt = val
 }
 
 function memeServiceSetImg(imgID) {
@@ -44,28 +44,53 @@ function memeServiceSetImg(imgID) {
 }
 
 function ChangColor(color) {
-  const idx = gCurrMeme.selectedLineIdx
-  gCurrMeme.lines[idx].color = color
+   const line = getLine()
+  line.color = color
 }
 
 function increase(val) {
-  const { selectedLineIdx: idx } = gCurrMeme
-  gCurrMeme.lines[idx].size += val
+  const line = getLine()
+  line.size += val
 }
 
 function addTxt() {
   const line = { txt: 'Add Text Here ', size: 30, color: 'black' }
-  gCurrMeme.selectedLineIdx++
   gCurrMeme.lines.push(line)
+  gCurrMeme.selectedLineIdx++
 }
 
 function switchLine() {
   const { lines } = gCurrMeme
   const lastIdx = lines.length - 1
   gCurrMeme.selectedLineIdx--
-
+  
   if (gCurrMeme.selectedLineIdx < 0) gCurrMeme.selectedLineIdx = lastIdx
 }
+
+
+function getByIdx(currX) {
+  const { lines } = gCurrMeme
+  const idx = lines.findIndex((line) => line.x === currX)
+  return idx
+}
+
+function getAlign(position) {
+ const line = getLine()
+  line.alignment = position
+}
+
+function fontChange(val) {
+  const line = getLine()
+  line.font = val
+}
+
+function deleted() {
+  const { lines, selectedLineIdx: idx } = getMeme()
+  lines.splice(idx, 1)
+  gCurrMeme.selectedLineIdx--
+  
+}
+
 
 function getLine() {
   return gCurrMeme.lines[gCurrMeme.selectedLineIdx]
@@ -81,26 +106,3 @@ function createMeme(id) {
   }
   gCurrMeme = meme
 }
-
-function getByIdx(currX) {
-  const { lines } = gCurrMeme
-  console.log(lines)
-  const idx = lines.findIndex((line) => line.x === currX)
-  return idx
-}
-
-function getAlign(position) {
-  const { lines, selectedLineIdx: idx } = getMeme()
-  lines[idx].alignment = position
-}
-
-function fontChange(val){  
-   const { lines, selectedLineIdx: idx } = getMeme()
-  lines[idx].font = val
-}
-
-function deleted(){
-  const { lines, selectedLineIdx: idx } = getMeme()
-  lines.splice(idx,1)
-}
-

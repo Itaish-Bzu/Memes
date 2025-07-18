@@ -1,6 +1,13 @@
 'use strict'
 
-renderGallery()
+
+
+function onShowGallery(){
+  document.querySelector('.gallery').style.display = 'block'
+  const elEditor = document.querySelector('.editor')
+  elEditor.style.display = 'none'
+   toggleMenu()
+}
 
 
 function renderGallery() {
@@ -12,11 +19,19 @@ const imgs = gImgs
 }
 
 function onImgSelect(imgID) {    
-memeServiceSetImg(+imgID)
+  memeServiceSetImg(+imgID)
   const elEditor = document.querySelector('.editor')
   elEditor.style.display = 'block'
   document.querySelector('.gallery').style.display = 'none'
    renderMeme()
+}
+
+function onRandom(){
+    const elGallery =document.querySelector('.gallery')
+  if(elGallery.style.display === 'none') return
+ const imgID = getRandomIntInclusive(1, gImgs.length)
+ onImgSelect(imgID)
+ toggleMenu()
 }
 
 

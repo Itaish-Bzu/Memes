@@ -12,8 +12,9 @@
     <div class="logo">Meme Generator</div>
     <div class="main-nav">
     <ul class="options">
-        <li><button class="btn" >Gallery</button></li>
+        <li><button class="btn" onclick="onShowGallery()" >Gallery</button></li>
         <li><button class="btn">Saved</button></li>
+        <li><button class="btn" onclick="onRandom()">Randomize</button></li>
     </ul>
 </div>
 <button class="btn btn-toggle"  onclick="toggleMenu()">☰</button>
@@ -53,10 +54,11 @@
                 <button class="btn"  onclick="onSwitch()">↕️</button>
                 <button class="btn" onclick="onDeleted()">🗑️</button>
             </div>
+
             <div class="advance-tools flex justify-center">
                 <input class="color" type="color" name="color" id="color" class="color-picer" oninput="onChangColor(this.value)">
                 <button class="btn"onclick="onIncrease(1)">A+</button>
-                <button class="btn"onclick="onIncrease(1)">A+</button>
+                <button class="btn"onclick="onIncrease(-1)">A-</button>
                 <button  class="btn" onclick="onAlignment('left')" >left</button>
                 <button  class="btn" onclick="onAlignment('end')" >right</button>
                 <button  class="btn" onclick="onAlignment('center')" >center</button>
