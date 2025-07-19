@@ -153,7 +153,7 @@ function getImgs(filter) {
 
 function saveMeme() {
   const memes = loadFromStorage(MEMES) 
-  if (!memes) return
+  if (!memes) return false
   const imgs = []
 
   memes.forEach((meme) => {

@@ -38,16 +38,19 @@ function onChoseFilter(val) {
 
 function onMemes() {
   const imgs = saveMeme()
-  let strHTML = imgs.map((img) => {
-    return `<img src="${img.url}" onclick="onGetImg(${img.id})" data-keys= ${img.keywords} >`
-  })
-   const elContainer = document.querySelector('.saved-imgs')
-  if (imgs){
-    elContainer.innerHTML = strHTML.join('')
+  const elContainer = document.querySelector('.saved-imgs')
+  
+  if(!imgs) {
+    elContainer.innerText ='No saved Images'
   }else{
-     elContainer.innerText ='No saved Images'
+    let strHTML = imgs.map((img) => {
+      return `<img src="${img.url}" onclick="onGetImg(${img.id})" data-keys= ${img.keywords} >`
+    })
+
+    elContainer.innerHTML = strHTML.join('')
   }
- show('saved-imgs')
+  show('saved-imgs')
+
 }
 
 function onGetImg(imgID){
