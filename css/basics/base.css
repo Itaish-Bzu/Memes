@@ -22,7 +22,7 @@ img {
     font-family: inherit;
     cursor: pointer;
     font-size: 1em;
-    color: var(--clr-primary--2);
+    color: var(--clr-primary-1);
     background-color: transparent;
     border: 2px solid white;
     border-radius: 0.5em;

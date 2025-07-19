@@ -12,6 +12,7 @@ function onInit() {
 }
 
 function renderMeme() {
+  if (!getMeme())return
   const { selectedImgId: memeId, lines } = getMeme()
   const { url } = getImg(memeId)
   let img = urlToImg(url)
@@ -112,16 +113,8 @@ function renderRect() {
 
 function onTextEdit(ev) {
   const { offsetX, offsetY } = ev   
-  const { lines } = getMeme()
-  const clickedTxt = lines.find((line) => {
-    const width = gCtx.measureText(line.txt).width
-    return ( 
-      
-      offsetX >= line.x && offsetX <= line.x + width 
-      && offsetY >= line.y-50 && offsetY <= line.y
-      
-    )
-  })
+
+  const clickedTxt =  isTxtClicked({x:offsetX,y:offsetY})
 
   console.log(clickedTxt);
   if (clickedTxt) {
@@ -172,4 +165,5 @@ function onUploadToFB() {
     }
     uploadImg(canvasData, onSuccess)
 }
+
 

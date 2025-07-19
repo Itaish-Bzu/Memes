@@ -170,3 +170,18 @@ function findMeme(id){
    
    gCurrMeme = meme
 }
+
+function isTxtClicked(pos){
+
+  const { lines } = getMeme()
+  const clickedTxt = lines.find((line) => {
+    const width = gCtx.measureText(line.txt).width
+    return ( 
+      
+      pos.x >= line.x &&  pos.x <= line.x + width 
+      && pos.y >= line.y-50 && pos.y <= line.y
+      
+    )
+  })
+  return clickedTxt
+}

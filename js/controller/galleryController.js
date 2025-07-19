@@ -1,6 +1,7 @@
 'use strict'
 
 let gFilter = ''
+let gImgIdx = 18
 
 function onShowGallery() {
   show('gallery')
@@ -8,12 +9,13 @@ function onShowGallery() {
 
 function renderGallery() {
   const imgs = getImgs(gFilter)
+  const upLoad =`	<input  class="btn" onchange="onImgInput(event)" type="file" accept=".jpg, .jpeg, .png, .webp" 	class="file-input btn" id="file-input" name="image"/>`
 
   const strHTML = imgs.map((img) => {
     return `<img src="${img.url}" onclick="onImgSelect(${img.id})" data-keys= ${img.keywords} >`
   })
 
-  document.querySelector('.gallery-photo').innerHTML = strHTML.join('')
+  document.querySelector('.gallery-photo').innerHTML = upLoad + strHTML.join('')
 }
 
 function onImgSelect(imgID) {
@@ -69,4 +71,35 @@ function show(name) {
   })
 
   document.querySelector(`.${name}`).classList.remove('hide')
+}
+
+
+function onImgInput(ev) {
+    loadImageFromInput(ev,  createImg)
+}
+
+function loadImageFromInput(ev, onImageReady) {
+    const reader = new FileReader()
+
+    reader.onload = (event) => {
+        const img = new Image()
+        img.src = event.target.result
+
+        img.onload = () => {
+            onImageReady(img)
+        }
+    }
+
+    reader.readAsDataURL(ev.target.files[0])
+
+}
+
+function createImg(){
+  const upImg = 
+  {id:gImgIdx++,
+     url: 'img/19.jpg',
+      keywords: ['happy', 'dog']}
+
+      gImgs.push(upImg)
+      renderGallery()
 }

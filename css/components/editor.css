@@ -64,13 +64,16 @@
 
 
 .btn:active{
-  background-color: #8e3e3e;
+  background-color: var(--clr-primary--2);
   box-shadow: 0 5px #666;
   transform: translateY(4px);
 }
 .canvas-editor .btn{
      box-shadow: 0 9px #e5e2e2; 
+
  }
+
+
 
 
 .advance-tools .color{
@@ -84,7 +87,7 @@
     top: -0.45em;
     left: -0.7em;
     font-size: 2em;
-
+     rotate: 180deg;
     
 } 
 
