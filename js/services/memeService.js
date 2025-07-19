@@ -1,29 +1,28 @@
 'use strict'
 const MEMES = 'memesDB'
 
-
 let gCurrMeme
 let gMems = []
 
 var gImgs = [
-  { id: 1, url: 'img/1.jpg', keywords: ['funny', 'cat'] },
-  { id: 2, url: 'img/2.jpg', keywords: ['funny', 'dog'] },
-  { id: 3, url: 'img/3.jpg', keywords: ['funny', 'dog'] },
-  { id: 4, url: 'img/4.jpg', keywords: ['funny', 'dog'] },
-  { id: 5, url: 'img/5.jpg', keywords: ['funny', 'dog'] },
-  { id: 6, url: 'img/6.jpg', keywords: ['funny', 'dog'] },
-  { id: 7, url: 'img/7.jpg', keywords: ['funny', 'dog'] },
-  { id: 8, url: 'img/8.jpg', keywords: ['funny', 'dog'] },
-  { id: 9, url: 'img/9.jpg', keywords: ['funny', 'dog'] },
-  { id: 10, url: 'img/10.jpg', keywords: ['funny', 'dog'] },
-  { id: 11, url: 'img/11.jpg', keywords: ['funny', 'dog'] },
-  { id: 12, url: 'img/12.jpg', keywords: ['funny', 'dog'] },
-  { id: 13, url: 'img/13.jpg', keywords: ['funny', 'dog'] },
-  { id: 14, url: 'img/14.jpg', keywords: ['funny', 'dog'] },
-  { id: 15, url: 'img/15.jpg', keywords: ['funny', 'dog'] },
-  { id: 16, url: 'img/16.jpg', keywords: ['funny', 'dog'] },
-  { id: 17, url: 'img/17.jpg', keywords: ['funny', 'dog'] },
-  { id: 18, url: 'img/18.jpg', keywords: ['funny', 'dog'] },
+  { id: 1, url: 'img/1.jpg', keywords: ['funny', 'tramp'] },
+  { id: 2, url: 'img/2.jpg', keywords: ['happy', 'dog'] },
+  { id: 3, url: 'img/3.jpg', keywords: ['happy', 'dog'] },
+  { id: 4, url: 'img/4.jpg', keywords: ['happy', 'cat'] },
+  { id: 5, url: 'img/5.jpg', keywords: ['funny', 'boy'] },
+  { id: 6, url: 'img/6.jpg', keywords: ['sarcastic', 'men'] },
+  { id: 7, url: 'img/7.jpg', keywords: ['funny', 'boy'] },
+  { id: 8, url: 'img/8.jpg', keywords: ['funny', 'men'] },
+  { id: 9, url: 'img/9.jpg', keywords: ['funny', 'boy'] },
+  { id: 10, url: 'img/10.jpg', keywords: ['happy', 'obama'] },
+  { id: 11, url: 'img/11.jpg', keywords: ['sarcastic', 'kiss'] },
+  { id: 12, url: 'img/12.jpg', keywords: ['crazy', 'men'] },
+  { id: 13, url: 'img/13.jpg', keywords: ['sarcastic', 'men'] },
+  { id: 14, url: 'img/14.jpg', keywords: ['crazy', 'men'] },
+  { id: 15, url: 'img/15.jpg', keywords: ['sad', 'men'] },
+  { id: 16, url: 'img/16.jpg', keywords: ['funny', 'men'] },
+  { id: 17, url: 'img/17.jpg', keywords: ['crazy', 'potin'] },
+  { id: 18, url: 'img/18.jpg', keywords: ['sad', 'movie'] },
 ]
 
 var gKeywordSearchCountMap = { funny: 12, cat: 16, baby: 2 }
@@ -55,10 +54,23 @@ function increase(val) {
   line.size += val
 }
 
+
+
+let gIdx = 1 ///////////
 function addTxt() {
-  const line = { txt: 'Add Text Here ', size: 30, color: 'black' }
-  gCurrMeme.lines.push(line)
+
+  const line = {
+    txt: 'Add Text Here ',
+    size: 30,
+    color: 'black',
+    txtAlign: 'left',
+    x: gCanvas.width / 4,
+    y: gIdx  * 40,
+
+  }
+  gIdx++
   gCurrMeme.selectedLineIdx++
+  gCurrMeme.lines.push(line)
 }
 
 function switchLine() {
@@ -71,13 +83,16 @@ function switchLine() {
 
 function getByIdx(currX) {
   const { lines } = gCurrMeme
-  const idx = lines.findIndex((line) => line.x === currX)
+  const idx = lines.findIndex((line) => line.y === currX)
   return idx
 }
 
 function getAlign(position) {
   const line = getLine()
-  line.alignment = position
+  line.txtAlign = position
+   
+
+
 }
 
 function fontChange(val) {
@@ -91,6 +106,12 @@ function deleted() {
   gCurrMeme.selectedLineIdx--
 }
 
+function changPosition(diff){
+   if (!diff)return
+    const line = getLine()
+    line.y += diff
+  }
+
 function getLine() {
   return gCurrMeme.lines[gCurrMeme.selectedLineIdx]
 }
@@ -100,14 +121,48 @@ function createMeme(id) {
     selectedImgId: id,
     selectedLineIdx: 0,
     lines: [
-      { txt: 'Add Text Here ', size: 30, color: 'black', alignment: 'left' },
+      {
+        txt: 'Add Text Here ',
+        size: 30,
+        color: 'black',
+        txtAlign: 'left',
+        x: gCanvas.width / 4 ,
+        y: gIdx * 40,
+      },
     ],
   }
+  gIdx++
   gCurrMeme = meme
 }
 
 function savingMeme() {
   gMems.push(gCurrMeme)
-  saveToStorage(MEMES , gMems)
+  saveToStorage(MEMES, gMems)
 }
+
+function getImgs(filter) {
+  if (!filter) gImgs
+  let imgs = gImgs.slice()
+
+  if (filter) {
+    const regexTxt = new RegExp(filter, 'i')
+    imgs = imgs.filter((img) => regexTxt.test(img.keywords))
+  }
+
+  return imgs
+}
+
+function saveMeme() {
+  const memes = loadFromStorage(MEMES) // memes
+  if (!memes) return
+  const imgs = []
+
+  memes.forEach((meme) => {
+    const img = getImg(meme.selectedImgId)
+    imgs.push(img)
+  })
+
+  return imgs
+}
+
 
