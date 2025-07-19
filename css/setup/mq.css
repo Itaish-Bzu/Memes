@@ -49,9 +49,7 @@
     .btn-toggle{
 	    display: none;
 	}
-   
 }
-
 
 
 @media (min-width:900px) {
@@ -65,9 +63,6 @@
    .advance-tools{
     width: 100%;
    }
-
-  
-
 }
 
 

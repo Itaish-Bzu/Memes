@@ -18,10 +18,6 @@
     border: none;
 }
 
-.filter-btn{
-    gap: 10px;
-}
-
 .gallery-photo{
     display:grid ;
     grid-template-columns: 
@@ -30,7 +26,21 @@
     padding-inline: 50px;
 }
 
+.filter-btn{
+    gap: 10px;
+}
 
-  
 
+
+.saved-section{
+    display:grid ;
+    grid-template-columns: 
+    repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px; 
+    padding-inline: 50px;
+    margin-top: 1rem;
+    justify-items: center;
+    align-items: center;
+}
+ 
 

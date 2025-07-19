@@ -1,12 +1,19 @@
 .editor-section{
-    /* flex-direction: column; */
-    /* gap: 20px; */
     align-items: center;
     justify-content: center;
     margin-block-start: 1rem;
 
 
 }
+
+.canvas-container{
+   max-width: 400px; 
+}
+
+.canvas:hover{
+    cursor: pointer;
+}
+
 
 .canvas-editor{
     padding-inline: 1.25rem;
@@ -50,21 +57,25 @@
 .advance-tools .font>option{
     background-color: var( --clr-primary--1);
 }
-
-.canvas-container{
-   max-width: 400px; 
-}
-
-.canvas:hover{
-    cursor: pointer;
-}
-
+ 
 .save-section{
     gap: 10px;
 }
 
+
+.btn:active{
+  background-color: #8e3e3e;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+.canvas-editor .btn{
+     box-shadow: 0 9px #e5e2e2; 
+ }
+
+
 .advance-tools .color{
-    padding-block: 1.45em;
+    padding-block: 1.80em;
+    box-shadow:none;
 }
 
 .advance-tools .color::after{
@@ -73,8 +84,11 @@
     top: -0.45em;
     left: -0.7em;
     font-size: 2em;
+
+    
 } 
 
 body.menu-open .color::after{
     pointer-events: none;
 }
+

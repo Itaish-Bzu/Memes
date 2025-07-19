@@ -2,10 +2,11 @@
 const MEMES = 'memesDB'
 
 let gCurrMeme
+let gIdx = 1
 let gMems = []
 
 var gImgs = [
-  { id: 1, url: 'img/1.jpg', keywords: ['funny', 'tramp'] },
+  { id: 1, url: 'img/1.jpg', keywords: ['funny', 'president'] },
   { id: 2, url: 'img/2.jpg', keywords: ['happy', 'dog'] },
   { id: 3, url: 'img/3.jpg', keywords: ['happy', 'dog'] },
   { id: 4, url: 'img/4.jpg', keywords: ['happy', 'cat'] },
@@ -14,14 +15,14 @@ var gImgs = [
   { id: 7, url: 'img/7.jpg', keywords: ['funny', 'boy'] },
   { id: 8, url: 'img/8.jpg', keywords: ['funny', 'men'] },
   { id: 9, url: 'img/9.jpg', keywords: ['funny', 'boy'] },
-  { id: 10, url: 'img/10.jpg', keywords: ['happy', 'obama'] },
+  { id: 10, url: 'img/10.jpg', keywords: ['happy', 'president'] },
   { id: 11, url: 'img/11.jpg', keywords: ['sarcastic', 'kiss'] },
   { id: 12, url: 'img/12.jpg', keywords: ['crazy', 'men'] },
   { id: 13, url: 'img/13.jpg', keywords: ['sarcastic', 'men'] },
   { id: 14, url: 'img/14.jpg', keywords: ['crazy', 'men'] },
   { id: 15, url: 'img/15.jpg', keywords: ['sad', 'men'] },
   { id: 16, url: 'img/16.jpg', keywords: ['funny', 'men'] },
-  { id: 17, url: 'img/17.jpg', keywords: ['crazy', 'potin'] },
+  { id: 17, url: 'img/17.jpg', keywords: ['crazy', 'president'] },
   { id: 18, url: 'img/18.jpg', keywords: ['sad', 'movie'] },
 ]
 
@@ -55,8 +56,6 @@ function increase(val) {
 }
 
 
-
-let gIdx = 1 ///////////
 function addTxt() {
 
   const line = {
@@ -153,7 +152,7 @@ function getImgs(filter) {
 }
 
 function saveMeme() {
-  const memes = loadFromStorage(MEMES) // memes
+  const memes = loadFromStorage(MEMES) 
   if (!memes) return
   const imgs = []
 
@@ -165,4 +164,9 @@ function saveMeme() {
   return imgs
 }
 
-
+function findMeme(id){
+  const memes = loadFromStorage(MEMES)
+  const meme = memes.find(meme=> meme.selectedImgId === id)
+   
+   gCurrMeme = meme
+}

@@ -138,21 +138,9 @@ function onTextEdit(ev) {
 }
 
 function onPosition(diff){
-  console.log(+diff);
   changPosition(+diff)
    
   renderMeme()
-}
-
-function toggleMenu() {
-  let elBody = document.querySelector('body')
-  elBody.classList.toggle('menu-open')
-
-  if (elBody.classList.contains('menu-open')) {
-    document.querySelector('.btn-toggle').innerText = 'x'
-  } else {
-    document.querySelector('.btn-toggle').innerText = '☰'
-  }
 }
 
 function onAlignment(position) {
@@ -171,7 +159,17 @@ function onDeleted() {
 }
 
 function onSave() {
-  console.log('save')
   savingMeme()
+}
+
+function onUploadToFB() {
+  
+    const canvasData = gCanvas.toDataURL('image/jpeg') 
+    function onSuccess(uploadedImgUrl) {
+        const encodedUploadedImgUrl = encodeURIComponent(uploadedImgUrl)
+
+        window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodedUploadedImgUrl}&t=${encodedUploadedImgUrl}`)
+    }
+    uploadImg(canvasData, onSuccess)
 }
 
