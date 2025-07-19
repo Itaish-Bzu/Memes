@@ -83,6 +83,7 @@ function onImgInput(ev) {
 
 function loadImageFromInput(ev, onImageReady) {
     const reader = new FileReader()
+    let idx = gImgs.length
 
     reader.onload = (event) => {
         const img = new Image()
@@ -97,12 +98,13 @@ function loadImageFromInput(ev, onImageReady) {
 
 }
 
-function createImg(){
-  const upImg = 
-  {id:gImgIdx++,
-     url: 'img/19.jpg',
+function createImg(img){
+ let idx = gImgs.length
+  const uploadImg = 
+  {id:++idx,
+     url: img.src,
       keywords: ['happy', 'dog']}
 
-      gImgs.push(upImg)
+      gImgs.push(uploadImg)
       renderGallery()
 }

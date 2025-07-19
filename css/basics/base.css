@@ -18,6 +18,11 @@ img {
     border-radius: 0.625rem;
 }
 
+img:hover{
+    border: 5px solid var(--clr-primary-1);
+    cursor: crosshair;
+}
+
 .btn{
     font-family: inherit;
     cursor: pointer;

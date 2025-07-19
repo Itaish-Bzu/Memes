@@ -116,7 +116,7 @@ function onTextEdit(ev) {
 
   const clickedTxt =  isTxtClicked({x:offsetX,y:offsetY})
 
-  console.log(clickedTxt);
+  // console.log(clickedTxt);
   if (clickedTxt) {
     
     const idx = getByIdx(clickedTxt.y)
