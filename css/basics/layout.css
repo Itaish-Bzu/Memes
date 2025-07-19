@@ -6,7 +6,6 @@
 .main-layout{
     display: grid;
     grid-template-columns: 16px 1fr 16px;
-    grid-template-rows: repeat(3(auto));
 }
 
 

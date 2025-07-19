@@ -1,43 +1,55 @@
 .editor-section{
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+    /* flex-direction: column; */
+    /* gap: 20px; */
     align-items: center;
-    overflow-y: hidden;
-    overflow-x: auto;
+    justify-content: center;
+    margin-block-start: 1rem;
+
+
 }
 
 .canvas-editor{
-    display: flex;
-    flex-direction: column;
-    gap: 40px;
     padding-inline: 1.25rem;
     padding-block: 1.25rem;
-    border: 2px solid white;
-    border-radius: 5px;
+    border: 5px solid white;
+    border-radius: 2.5em;
+    padding: 2.5em;
+
     
 }
 
 .canvas-editor input{
     padding: 1em;
     border-radius: 20px;
-    font-size: 1.25;
-    background-color: transparent;
-    border: solid white;
-
+    font-size: 1.25rem;
+    text-transform: capitalize;
+    border:none;
 }
 
 .tools{
-    gap: 20px;
-    justify-content: center;
+    gap: 10px;
     margin-block-start: 0.5em;
 }
 
+
 .advance-tools {
-    flex-wrap: wrap;
-    gap: 20px;
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    border-radius: 5px;
+    width: 80%;
+    gap: 10px;
+
 }
 
+.advance-tools .font{
+    text-transform:uppercase;
+    grid-column:2/span 2 ;
+    width: max-content;
+    
+}
+.advance-tools .font>option{
+    background-color: var( --clr-primary--1);
+}
 
 .canvas-container{
    max-width: 400px; 
@@ -47,22 +59,22 @@
     cursor: pointer;
 }
 
-.font > option{
-    text-transform: uppercase;
-    background-color: var(--clr-primary--1);
-
+.save-section{
+    gap: 10px;
 }
 
 .advance-tools .color{
-    position: relative;
-    height: 50px;
-    width: 50px;
+    padding-block: 1.45em;
 }
 
 .advance-tools .color::after{
     content: '🎨';
-    position: absolute;
-    top: 6px;
-    left: 4px;
-    font-size: 25px;
+    position: relative;
+    top: -0.45em;
+    left: -0.7em;
+    font-size: 2em;
 } 
+
+body.menu-open .color::after{
+    pointer-events: none;
+}

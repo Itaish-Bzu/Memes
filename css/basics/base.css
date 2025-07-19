@@ -14,8 +14,8 @@ body {
 }
 
 img {
-    width: 100%;
-    border-radius: 5px;
+    max-width: 100%;
+    border-radius: 0.625rem;
 }
 
 .btn{
@@ -32,4 +32,8 @@ img {
 
 a{
     text-decoration: none;
+}
+
+.hide{
+    display: none;
 }

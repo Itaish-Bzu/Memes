@@ -1,16 +1,17 @@
 header{
     gap: 10px;
-    justify-content:space-around;
+    justify-content:space-between;
     align-items: center;
     background-color: var(--clr-primary--1);
-    padding-inline:5px ;
-    padding-block: 1em;
-    margin-bottom: 0.5em;
-  
+    padding-inline:2em;
+    padding-block: 1em; 
+    border-radius: 0.625rem;
 }
 
 header  .logo{
     font-weight:bolder;
     font-size: 1.375rem;
-
+}
+.main-nav{
+    gap: 5px;
 }

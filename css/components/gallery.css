@@ -1,39 +1,36 @@
-
-.gallery{
-    padding: 1.25rem;
-}
-
-
 .search-img{ 
     flex-direction: column;
-    gap: 5px;
+    /* align-items: center; */
     padding-block: 1.25em;
-    padding-inline: 1.25em;
-    font-size: 1rem;
+    padding-inline: 10px;
 }
 
 .gallery-btn{
     border: none;
     padding: 0;
-
 }
 
-.search-gallery {
+.search-gallery input {
+    width: 100%;
     padding: 1em;
-    border-radius: 20px;
+    border-radius:1em;
     font-size: inherit;
-    background-color: transparent;
-    border: solid white;
+    border: none;
 }
 
+.filter-btn{
+    gap: 10px;
+}
 
 .gallery-photo{
     display:grid ;
-    gap: 10px; 
-    padding-inline: 1rem;
-
+    grid-template-columns: 
+    repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px; 
+    padding-inline: 50px;
 }
 
 
+  
 
 
