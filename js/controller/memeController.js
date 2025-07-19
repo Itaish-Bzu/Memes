@@ -3,12 +3,12 @@
 let gCanvas
 let gCtx
 
+
 function onInit() {
   gCanvas = document.querySelector('.canvas')
   gCtx = gCanvas.getContext('2d')
   renderGallery()
   window.addEventListener('resize', resizeCanvas)
- 
 }
 
 function renderMeme() {
@@ -20,13 +20,12 @@ function renderMeme() {
     gCanvas.height = (img.naturalHeight / img.naturalWidth) * gCanvas.width
     gCtx.drawImage(img, 0, 0, gCanvas.width, gCanvas.height)
 
-    const space = 30
-    lines.forEach((line, idx) => {
-      line.x = idx * space
-      line.y = (idx + 1) * space
-      const { txt, color, size, alignment, font } = line
-      drawText(txt, color, size, line.x, line.y, alignment, font)
+    lines.forEach((line) => {
+      const { txt, color, size, txtAlign, font } = line      
+      drawText(txt, color, size, line.x, line.y, txtAlign, font)
     })
+
+    renderRect()
   }
 }
 
@@ -42,14 +41,14 @@ function urlToImg(url) {
   return img
 }
 
-function drawText(txt, color, size, x, y, alignment = 'left', font = 'ariel') {
+function drawText(txt, color, size, x, y, txtAlign , font = 'ariel') {
   gCtx.beginPath()
   gCtx.lineWidth = 1
   gCtx.strokeStyle = 'black'
   gCtx.fillStyle = color
   gCtx.font = `${size}px ${font}`
   gCtx.fontWeight = `bold`
-  gCtx.textAlign = alignment
+  gCtx.textAlign = txtAlign  
   gCtx.textBaseline = 'alphabetic'
 
   gCtx.fillText(txt, x, y)
@@ -85,42 +84,64 @@ function onAddTxt() {
 function onSwitch() {
   switchLine()
   renderMeme()
-  setTimeout(renderRect, 200)
 }
 
-function drawRect(x, y, width, height) {
+function drawRect(x, y, width, height,  ) {
   gCtx.beginPath()
   gCtx.lineWidth = 3
-  gCtx.strokeStyle = 'black'
+  gCtx.strokeStyle = 'white'
   gCtx.rect(x, y, width, height)
   gCtx.stroke()
 }
 
 function renderRect() {
   const line = getLine()
+   if(!line)return
+  let x = line.x
+  const align = line.txtAlign
+  const space = 10
+  const width = gCtx.measureText(line.txt).width  
+
+ if (align ==='center'){
+    x -= width/2
+ }else if(align ==='right')
+  x -= width
   
-  const width = gCtx.measureText(line.txt).width
-  drawRect(line.x, line.y - 30, width, line.size + 5)
+  drawRect(x, line.y - line.size, width, line.size + space)
 }
 
 function onTextEdit(ev) {
-  const { offsetX, offsetY } = ev
+  const { offsetX, offsetY } = ev   
   const { lines } = getMeme()
   const clickedTxt = lines.find((line) => {
     const width = gCtx.measureText(line.txt).width
-    return (
-      offsetX >= line.x &&
-      offsetX <= line.x + width &&
-      offsetY >= line.x &&
-      offsetY <= line.y
+    return ( 
+      
+      offsetX >= line.x && offsetX <= line.x + width 
+      && offsetY >= line.y-50 && offsetY <= line.y
+      
     )
   })
 
+  console.log(clickedTxt);
   if (clickedTxt) {
-    const idx = getByIdx(clickedTxt.x)
+    
+    const idx = getByIdx(clickedTxt.y)
+     
     const meme = getMeme()
     meme.selectedLineIdx = idx
+    document.querySelector('.canvas-editor').querySelector("[name=text]").
+    value = clickedTxt.txt
+     renderMeme()
+     
   } else return
+}
+
+function onPosition(diff){
+  console.log(+diff);
+  changPosition(+diff)
+   
+  renderMeme()
 }
 
 function toggleMenu() {
@@ -149,9 +170,8 @@ function onDeleted() {
   renderMeme()
 }
 
-
-function onSave(){
-  console.log('save');
+function onSave() {
+  console.log('save')
   savingMeme()
-  
 }
+
