@@ -1,46 +1,50 @@
-.search-img{ 
-    flex-direction: column;
-    /* align-items: center; */
-    padding-block: 1.25em;
-    padding-inline: 10px;
-}
 
-.gallery-btn{
-    border: none;
-    padding: 0;
-}
+ .search-img {
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-block: 1em;
+    gap: 5px;
+} 
 
 .search-gallery input {
-    width: 100%;
-    padding: 1em;
-    border-radius:1em;
-    font-size: inherit;
-    border: none;
+  width: 80vw;
+  padding:1rem;
+  border-radius: 1em;
+  font-size:1rem;
+  border: none;
+} 
+
+.filter-btn {
+  justify-content: center;
+  font-size:1rem;
 }
 
-.gallery-photo{
-    display:grid ;
-    grid-template-columns: 
-    repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px; 
-    padding-inline: 50px;
-}
-
-.filter-btn{
-    gap: 10px;
+.gallery-btn {
+  border: none;
+  padding: 0;
 }
 
 
-
-.saved-section{
-    display:grid ;
-    grid-template-columns: 
-    repeat(auto-fill, minmax(250px, 1fr));
-    gap: 20px; 
-    padding-inline: 50px;
-    margin-top: 1rem;
-    justify-items: center;
-    align-items: center;
+.gallery-photo {
+  display: grid;
+  grid-template-columns: max(300px);
+   /* align-self: center; */
+  gap: 20px;
+  padding-inline: 50px;
 }
- 
 
+.filter-btn {
+  gap: 10px;
+}
+
+.saved-section {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+  padding-inline: 50px;
+  margin-top: 1rem;
+  justify-items: center;
+  align-items: center;
+}

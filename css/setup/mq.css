@@ -5,7 +5,8 @@
     right: 0;
 
     flex-direction: column;
-    gap: 0;
+
+    gap: 10px;
     height: 100vh;
 
     background-color: var(--clr-primary--1);
@@ -21,7 +22,10 @@
     border-block-end: 1px solid #ccc;
     padding: 1em;
     justify-content: center;
-    align-items: center;
+  }
+
+  .main-nav button:hover {
+    color: black;
   }
 
   body.menu-open .main-nav {
@@ -30,27 +34,41 @@
 }
 
 @media (min-width: 640px) {
-  .main-layout {
-    grid-template-columns: minmax(16px, 1fr) minmax(auto, 600px) minmax(
-        16px,
-        1fr
-      );
-  }
   .btn-toggle {
     display: none;
   }
+
   .main-nav button {
     border: none;
+  }
+
+  header {
+    justify-content: space-between;
+    gap: 10px;
+    padding-inline: 2em;
+    padding-block: 1em;
+    border-radius: 0.625rem;
+    font-size: 1.25rem;
+  }
+
+  .gallery-photo {
+    grid-template-columns: repeat(2, minmax(250px, 1fr));
+  }
+
+  .search-img {
+    width: 100%;
+    flex-direction: column;
+    padding-block: 1.25em;
+    padding-inline: 50px;
+    gap: 10px;
+  }
+
+  .gallery-photo {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   }
 }
 
 @media (min-width: 900px) {
-  .main-layout {
-    grid-template-columns: minmax(16px, 1fr) minmax(auto, 860px) minmax(
-        16px,
-        1fr
-      );
-  }
   .editor-section {
     flex-direction: row;
     justify-content: center;
@@ -60,15 +78,37 @@
   }
 
   header .logo {
-    font-size: 1.865rem;
+    font-weight: bolder;
+    font-size: 1.875rem;
+  }
+  .gallery-photo {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   }
 }
 
-@media (min-width: 1020px) {
-  .main-layout {
-    grid-template-columns: minmax(16px, 1fr) minmax(auto, 980px) minmax(
-        16px,
-        1fr
-      );
+@media (min-width: 1200px) {
+  body {
+    font-size: 22px;
+  }
+
+  .gallery-photo {
+    grid-template-columns: repeat(4, minmax(250px, 1fr));
+  }
+
+  .search-gallery input {
+    width: 50vw;
+  }
+
+  .search-img {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .filter-btn {
+    justify-content: space-between;
+    gap: 50px;
+    background-color: transparent;
+    border-radius: 20px;
+    font-size: inherit;
   }
 }
