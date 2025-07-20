@@ -1,14 +1,14 @@
-  header {
-    justify-content: space-around;
-    align-items: center;
+header {
+  justify-content: space-around;
+  align-items: center;
 
   background-color: var(--clr-primary--1);
 
-    width: 100%;
-    font-size: 1rem;
-    padding-inline: 10px;
-    padding-block: 5px;
-    margin-inline: auto;
+  width: 100%;
+  font-size: 1rem;
+  padding-inline: 10px;
+  padding-block: 5px;
+  margin-inline: auto;
 }
 
 header .logo {
@@ -22,5 +22,4 @@ header .logo {
 
 .main-nav button:hover {
   color: black;
-  
 }

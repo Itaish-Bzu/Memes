@@ -1,97 +1,88 @@
-.editor-section{
-    align-items: center;
-    justify-content: center;
-    margin-block-start: 1rem;
-
-
-}
-
-.canvas-container{
-   max-width: 400px; 
-}
-
-.canvas:hover{
-    cursor: pointer;
+.editor-section {
+  align-items: center;
+  justify-content: center;
+  margin-block-start: 0.5rem;
+  gap: 10px;
 }
 
 
-.canvas-editor{
-    padding-inline: 1.25rem;
-    padding-block: 1.25rem;
-    border: 5px solid white;
-    border-radius: 2.5em;
-    padding: 2.5em;
 
-    
+.canvas-container {
+  max-width: 300px;
 }
 
-.canvas-editor input{
-    padding: 1em;
-    border-radius: 20px;
-    font-size: 1.25rem;
-    text-transform: capitalize;
-    border:none;
+.canvas:hover {
+  cursor: pointer;
 }
 
-.tools{
-    gap: 10px;
-    margin-block-start: 0.5em;
+.canvas-editor {
+  padding-inline: 0.5rem;
+  padding-block: 1rem;
+  padding: 2.5em;
 }
 
+.canvas-editor .btn {
+  padding-inline: 16px;
+  padding-block: 16px;
+  text-align: center;
+  font-size: 20px;
+  font-weight: normal;
+}
+
+.canvas-editor input:first-child {
+  padding: 0.5em;
+  border-radius: 0.625em;
+  font-size: 1.25rem;
+  text-transform: capitalize;
+  border: none;
+}
+
+.tools {
+  gap: 10px;
+  margin-block-start: 0.5em;
+}
 
 .advance-tools {
-    display: grid;
-    grid-template-columns: repeat(4,1fr);
-    border-radius: 5px;
-    width: 80%;
-    gap: 10px;
-
+  display: grid;
+  grid-template-columns: repeat(4, auto);
+  border-radius: 5px;
+  gap: 10px;
+  justify-content: space-evenly;
+  background-color: rgb(200, 160, 143);
+  padding: 10px;
 }
 
-.advance-tools .font{
-    text-transform:uppercase;
-    grid-column:2/span 2 ;
-    width: max-content;
-    
+.advance-tools > font {
+  text-transform: uppercase;
+  width: max-content;
 }
-.advance-tools .font>option{
-    background-color: var( --clr-primary--1);
+.advance-tools .font > option {
+  background-color: var(--clr-primary--1);
 }
- 
+
 .save-section{
     gap: 10px;
 }
 
-
-/* .btn:active{
+.btn:active {
   background-color: var(--clr-primary--2);
-  box-shadow: 0 5px #666;
   transform: translateY(4px);
 }
-.canvas-editor .btn{
-     box-shadow: 0 9px #e5e2e2; 
 
- } */
+.advance-tools .color {
+  padding-block: 1.8em;
+  padding-inline: 1.5em;
 
-
-
-
-.advance-tools .color{
-    padding-block: 1.80em;
-    box-shadow:none;
 }
 
-.advance-tools .color::after{
-    content: '🎨';
-    position: relative;
-    top: -0.45em;
-    left: -0.7em;
-    font-size: 2em;
-     rotate: 180deg;
-    
-} 
+.advance-tools .color::after {
+  content: '🎨';
+  position: relative;
+  top: -10px;
+  left: -20px;
+  font-size: 1.5em;
+}
 
 body.menu-open .color::after{
     pointer-events: none;
 }
-

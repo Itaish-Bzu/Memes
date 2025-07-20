@@ -56,26 +56,15 @@
       <div class="editor hide" >
         <div class="editor-section flex direction">
           <section class="canvas-container">
-            <canvas class="canvas" width="400" height="400" onclick="onTextEdit(event)"></canvas>
+            <canvas class="canvas" width="300" height="300" onclick="onTextEdit(event)"></canvas>
           </section>
 
           <section class="canvas-editor flex direction">
             <input type="text" name="text" placeholder="Add text here" oninput="onSetLineTxt(this.value)" />
             <div class="tools flex">
-              <button class="btn" onclick="onPosition(-10)">⬆</button>
-              <button class="btn" onclick="onPosition(+10)">⬇ </button>
               <button class="btn" onclick="onAddTxt()">+</button>
-              <button class="btn" onclick="onSwitch()">↕️</button>
-              <button class="btn" onclick="onDeleted()">🗑️</button>
-            </div>
-
-            <div class="advance-tools ">
-              <button class="btn" onclick="onIncrease(1)">A+</button>
-              <button class="btn" onclick="onIncrease(-1)">A-</button>
-              <button class="btn" onclick="onAlignment('left')">⮜</button>
-              <button class="btn" onclick="onAlignment('right')"> ⮞</button>
-              <button class="btn" onclick="onAlignment('center')"> ⇔  </button>
-
+              <button class="btn" onclick="onSwitch()">↕</button>
+              <button class="btn" onclick="onDeleted()">🗑</button>
               <select class="font btn" name="font" id="font"  onchange="onFontChange(this.value)" >
                 <option value="">Impact</option>
                 <option value="ariel">Ariel</option>
@@ -85,7 +74,19 @@
                 <option value="cursive">Cursive</option>
                 <option value="courier">courier</option>
               </select>
-               <input class="color btn" type="color" name="color"  id="color"  oninput="onChangColor(this.value)" />
+            </div>
+            
+            <div class="advance-tools ">
+              <button class="btn" onclick="onPosition(-10)">⬆</button>
+              <button class="btn" onclick="onPosition(+10)">⬇ </button>
+              <button class="btn" onclick="onIncrease(1)">A+</button>
+              <button class="btn" onclick="onIncrease(-1)">A-</button>
+              <button class="btn" onclick="onAlignment('left')">⮜</button>
+              <button class="btn" onclick="onAlignment('right')"> ⮞</button>
+              <button class="btn" onclick="onAlignment('center')"> ⇔  </button>
+              <input class="color btn" type="color" name="color"  id="color"  oninput="onChangColor(this.value)" />
+
+              
             </div>
 
             <div class="save-section flex ">

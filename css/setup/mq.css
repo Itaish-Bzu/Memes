@@ -66,6 +66,36 @@
   .gallery-photo {
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   }
+
+  .canvas {
+    width: 400px;
+  }
+  .canvas-container {
+    min-width: 400px;
+  }
+
+  .canvas-editor {
+    justify-content: space-evenly;
+    font-size: 1.375rem;
+    padding-inline: 1.5em;
+  }
+
+  .canvas-editor .btn {
+    padding-inline: 1.5rem;
+    padding-block: 1.5rem;
+    font-size: 22px;
+    font-weight: bold;
+  }
+  .canvas-editor input:first-child {
+    padding: 1em;
+    font-size: 1.25rem;
+    font-size: 22px;
+  }
+
+  .advance-tools .color {
+    padding-inline: 2.2rem;
+    padding-block: 2.5rem;
+  }
 }
 
 @media (min-width: 900px) {
@@ -110,5 +140,12 @@
     background-color: transparent;
     border-radius: 20px;
     font-size: inherit;
+  }
+
+  .canvas {
+    width: 500px;
+  }
+  .canvas-container {
+    min-width: 500px;
   }
 }
