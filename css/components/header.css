@@ -1,17 +1,22 @@
-header{
-    gap: 10px;
-    justify-content:space-between;
-    align-items: center;
-    background-color: var(--clr-primary--1);
-    padding-inline:2em;
-    padding-block: 1em; 
-    border-radius: 0.625rem;
+header {
+  gap: 10px;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--clr-primary--1);
+  padding-inline: 2em;
+  padding-block: 1em;
+  border-radius: 0.625rem;
 }
 
-header  .logo{
-    font-weight:bolder;
-    font-size: 1.375rem;
+header .logo {
+  font-weight: bolder;
+  font-size: 1.375rem;
 }
-.main-nav{
-    gap: 5px;
+
+.main-nav {
+  gap: 5px;
+}
+
+.main-nav button:hover {
+  color: black;
 }

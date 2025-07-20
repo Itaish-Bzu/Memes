@@ -1,75 +1,74 @@
+@media (max-width: 640px) {
+  .main-header .main-nav {
+    position: fixed;
+    top: 0;
+    right: 0;
 
+    flex-direction: column;
+    gap: 0;
+    height: 100vh;
 
+    background-color: var(--clr-primary--1);
+    border-inline-start: 1px solid #ccc;
+    min-width: 200px;
+    transform: translateX(100%);
+    transition: transform 0.7s;
+  }
 
-@media(max-width: 640px){
-	.main-header .main-nav{
-        position: fixed;
-        top: 0;
-        right: 0;
+  .main-nav button {
+    border: none;
+    border-radius: 0;
+    border-block-end: 1px solid #ccc;
+    padding: 1em;
+    justify-content: center;
+    align-items: center;
+  }
 
-        flex-direction: column;
-        
-        gap: 10px;
-        height: 100vh;
-
-        background-color: var( --clr-primary--1);
-        border-inline-start: 1px solid #ccc;
-        min-width: 200px;
-        transform: translateX(100%);
-        transition: transform 0.7s ;
-      
-	}
-
-    .main-nav button{
-        border: none;
-        border-radius: 0;
-        border-block-end: 1px solid #ccc;
-        padding: 1em;
-        justify-content: center;
-    }
-
-    .main-nav button:hover{
-        color: black;
-    }
-
-
-	body.menu-open .main-nav {
-        transform: translateX(0);
-	}
-
-
-
-
+  body.menu-open .main-nav {
+    transform: translateX(0);
+  }
 }
 
 @media (min-width: 640px) {
-     .main-layout {
-        grid-template-columns: minmax(16px, 1fr) minmax(auto, 600px) minmax(16px, 1fr)
-    }
-    .btn-toggle{
-	    display: none;
-	}
+  .main-layout {
+    grid-template-columns: minmax(16px, 1fr) minmax(auto, 600px) minmax(
+        16px,
+        1fr
+      );
+  }
+  .btn-toggle {
+    display: none;
+  }
+  .main-nav button {
+    border: none;
+  }
 }
 
-
-@media (min-width:900px) {
-    .main-layout {
-        grid-template-columns: minmax(16px, 1fr) minmax(auto, 860px) minmax(16px, 1fr)
-    }
-   .editor-section{
+@media (min-width: 900px) {
+  .main-layout {
+    grid-template-columns: minmax(16px, 1fr) minmax(auto, 860px) minmax(
+        16px,
+        1fr
+      );
+  }
+  .editor-section {
     flex-direction: row;
     justify-content: center;
-   }
-   .advance-tools{
+  }
+  .advance-tools {
     width: 100%;
-   }
-}
+  }
 
+  header .logo {
+    font-size: 1.865rem;
+  }
+}
 
 @media (min-width: 1020px) {
-    .main-layout {
-	grid-template-columns: minmax(16px, 1fr) minmax(auto, 980px) minmax(16px, 1fr)
-    
-}
-
+  .main-layout {
+    grid-template-columns: minmax(16px, 1fr) minmax(auto, 980px) minmax(
+        16px,
+        1fr
+      );
+  }
 }
