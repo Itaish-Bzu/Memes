@@ -2,29 +2,33 @@
 const MEMES = 'memesDB'
 
 let gCurrMeme
+let gImgs
 let gIdx = 1
 let gMems = []
+let idx = 1
 
-var gImgs = [
-  { id: 1, url: 'img/1.jpg', keywords: ['funny', 'president'] },
-  { id: 2, url: 'img/2.jpg', keywords: ['happy', 'dog'] },
-  { id: 3, url: 'img/3.jpg', keywords: ['happy', 'dog'] },
-  { id: 4, url: 'img/4.jpg', keywords: ['happy', 'cat'] },
-  { id: 5, url: 'img/5.jpg', keywords: ['funny', 'boy'] },
-  { id: 6, url: 'img/6.jpg', keywords: ['sarcastic', 'men'] },
-  { id: 7, url: 'img/7.jpg', keywords: ['funny', 'boy'] },
-  { id: 8, url: 'img/8.jpg', keywords: ['funny', 'men'] },
-  { id: 9, url: 'img/9.jpg', keywords: ['funny', 'boy'] },
-  { id: 10, url: 'img/10.jpg', keywords: ['happy', 'president'] },
-  { id: 11, url: 'img/11.jpg', keywords: ['sarcastic', 'kiss'] },
-  { id: 12, url: 'img/12.jpg', keywords: ['crazy', 'men'] },
-  { id: 13, url: 'img/13.jpg', keywords: ['sarcastic', 'men'] },
-  { id: 14, url: 'img/14.jpg', keywords: ['crazy', 'men'] },
-  { id: 15, url: 'img/15.jpg', keywords: ['sad', 'men'] },
-  { id: 16, url: 'img/16.jpg', keywords: ['funny', 'men'] },
-  { id: 17, url: 'img/17.jpg', keywords: ['crazy', 'president'] },
-  { id: 18, url: 'img/18.jpg', keywords: ['sad', 'movie'] },
-]
+_createImgs()
+
+// var gImgs = [
+//   { id: 1, url: 'img/1.jpg', keywords: ['funny', 'president'] },
+//   { id: 2, url: 'img/2.jpg', keywords: ['happy', 'dog'] },
+//   { id: 3, url: 'img/3.jpg', keywords: ['happy', 'dog'] },
+//   { id: 4, url: 'img/4.jpg', keywords: ['happy', 'cat'] },
+//   { id: 5, url: 'img/5.jpg', keywords: ['funny', 'boy'] },
+//   { id: 6, url: 'img/6.jpg', keywords: ['sarcastic', 'men'] },
+//   { id: 7, url: 'img/7.jpg', keywords: ['funny', 'boy'] },
+//   { id: 8, url: 'img/8.jpg', keywords: ['funny', 'men'] },
+//   { id: 9, url: 'img/9.jpg', keywords: ['funny', 'boy'] },
+//   { id: 10, url: 'img/10.jpg', keywords: ['happy', 'president'] },
+//   { id: 11, url: 'img/11.jpg', keywords: ['sarcastic', 'kiss'] },
+//   { id: 12, url: 'img/12.jpg', keywords: ['crazy', 'men'] },
+//   { id: 13, url: 'img/13.jpg', keywords: ['sarcastic', 'men'] },
+//   { id: 14, url: 'img/14.jpg', keywords: ['crazy', 'men'] },
+//   { id: 15, url: 'img/15.jpg', keywords: ['sad', 'men'] },
+//   { id: 16, url: 'img/16.jpg', keywords: ['funny', 'men'] },
+//   { id: 17, url: 'img/17.jpg', keywords: ['crazy', 'president'] },
+//   { id: 18, url: 'img/18.jpg', keywords: ['sad', 'movie'] },
+// ]
 
 var gKeywordSearchCountMap = { funny: 12, cat: 16, baby: 2 }
 
@@ -55,17 +59,14 @@ function increase(val) {
   line.size += val
 }
 
-
 function addTxt() {
-
   const line = {
     txt: 'Add Text Here ',
     size: 30,
     color: 'black',
     txtAlign: 'left',
     x: gCanvas.width / 4,
-    y: gIdx  * 40,
-
+    y: gIdx * 40,
   }
   gIdx++
   gCurrMeme.selectedLineIdx++
@@ -89,9 +90,6 @@ function getByIdx(currX) {
 function getAlign(position) {
   const line = getLine()
   line.txtAlign = position
-   
-
-
 }
 
 function fontChange(val) {
@@ -101,37 +99,19 @@ function fontChange(val) {
 
 function deleted() {
   const { lines, selectedLineIdx: idx } = getMeme()
+  if (lines.length === 1) return
   lines.splice(idx, 1)
   gCurrMeme.selectedLineIdx--
 }
 
-function changPosition(diff){
-   if (!diff)return
-    const line = getLine()
-    line.y += diff
-  }
+function changPosition(diff) {
+  if (!diff) return
+  const line = getLine()
+  line.y += diff
+}
 
 function getLine() {
   return gCurrMeme.lines[gCurrMeme.selectedLineIdx]
-}
-
-function createMeme(id) {
-  const meme = {
-    selectedImgId: id,
-    selectedLineIdx: 0,
-    lines: [
-      {
-        txt: 'Add Text Here ',
-        size: 30,
-        color: 'black',
-        txtAlign: 'left',
-        x: gCanvas.width / 4 ,
-        y: gIdx * 40,
-      },
-    ],
-  }
-  gIdx++
-  gCurrMeme = meme
 }
 
 function savingMeme() {
@@ -152,7 +132,7 @@ function getImgs(filter) {
 }
 
 function saveMeme() {
-  const memes = loadFromStorage(MEMES) 
+  const memes = loadFromStorage(MEMES)
   if (!memes) return false
   const imgs = []
 
@@ -164,24 +144,67 @@ function saveMeme() {
   return imgs
 }
 
-function findMeme(id){
+function findMeme(id) {
   const memes = loadFromStorage(MEMES)
-  const meme = memes.find(meme=> meme.selectedImgId === id)
-   
-   gCurrMeme = meme
+  const meme = memes.find((meme) => meme.selectedImgId === id)
+
+  gCurrMeme = meme
 }
 
-function isTxtClicked(pos){
-
+function isTxtClicked(pos) {
   const { lines } = getMeme()
   const clickedTxt = lines.find((line) => {
     const width = gCtx.measureText(line.txt).width
-    return ( 
-      
-      pos.x >= line.x &&  pos.x <= line.x + width 
-      && pos.y >= line.y-50 && pos.y <= line.y
-      
+    return (
+      pos.x >= line.x &&
+      pos.x <= line.x + width &&
+      pos.y >= line.y - 50 &&
+      pos.y <= line.y
     )
   })
   return clickedTxt
+}
+
+function createMeme(id) {
+  const meme = {
+    selectedImgId: id,
+    selectedLineIdx: 0,
+    lines: [
+      {
+        txt: 'Add Text Here ',
+        size: 30,
+        color: 'black',
+        txtAlign: 'left',
+        x: gCanvas.width / 4,
+        y: gIdx * 40,
+      },
+    ],
+  }
+  gIdx++
+  gCurrMeme = meme
+}
+
+
+function _createImgs() {
+  gImgs = []
+  for (var i = 0; i < 18; i++) {
+    const img = _createImg()
+    gImgs.push(img)
+  }
+}
+
+function _createImg() {
+  const img = {
+    id: idx,
+    url: `img/${idx}.jpg`,
+    keywords: [_createKeyword()],
+  }
+  idx++
+  return img
+}
+
+function _createKeyword() {
+  const keywords = ['funny', 'funny', 'sarcastic', 'crazy', 'sad']
+  const idx = getRandomIntInclusive(0, keywords.length)
+  return keywords[idx]
 }

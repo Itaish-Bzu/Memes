@@ -2,6 +2,7 @@
 
 let gCanvas
 let gCtx
+let gisRemoveMode = false
 
 
 function onInit() {
@@ -12,8 +13,8 @@ function onInit() {
 }
 
 function renderMeme() {
-  if (!getMeme())return
   const { selectedImgId: memeId, lines } = getMeme()
+  if (!getMeme())return
   const { url } = getImg(memeId)
   let img = urlToImg(url)
 
@@ -25,8 +26,8 @@ function renderMeme() {
       const { txt, color, size, txtAlign, font } = line      
       drawText(txt, color, size, line.x, line.y, txtAlign, font)
     })
-
-    renderRect()
+    if (!gisRemoveMode) renderRect()
+    
   }
 }
 
@@ -63,8 +64,11 @@ function onSetLineTxt(val) {
 }
 
 function onDownland(elLink) {
+  gisRemoveMode = true
+  renderMeme()
   const dataUrl = gCanvas.toDataURL()
   elLink.href = dataUrl
+  gisRemoveMode = false
 }
 
 function onChangColor(color) {

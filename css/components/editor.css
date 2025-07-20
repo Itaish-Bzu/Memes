@@ -63,7 +63,7 @@
 }
 
 
-.btn:active{
+/* .btn:active{
   background-color: var(--clr-primary--2);
   box-shadow: 0 5px #666;
   transform: translateY(4px);
@@ -71,7 +71,7 @@
 .canvas-editor .btn{
      box-shadow: 0 9px #e5e2e2; 
 
- }
+ } */
 
 
 
