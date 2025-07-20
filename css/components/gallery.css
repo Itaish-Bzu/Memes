@@ -30,7 +30,6 @@
 .gallery-photo {
   display: grid;
   grid-template-columns: max(300px);
-   /* align-self: center; */
   gap: 20px;
   padding-inline: 50px;
 }

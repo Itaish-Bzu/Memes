@@ -28,7 +28,14 @@
   font-size: 20px;
   font-weight: normal;
 }
+.canvas-editor .btn:hover{
 
+    background-color: var(--clr-primary--2);
+}
+
+   .canvas-editor .btn :active {
+  transform: translateY(4px);
+}
 .canvas-editor input:first-child {
   padding: 0.5em;
   border-radius: 0.625em;
@@ -64,10 +71,7 @@
     gap: 10px;
 }
 
-.btn:active {
-  background-color: var(--clr-primary--2);
-  transform: translateY(4px);
-}
+
 
 .advance-tools .color {
   padding-block: 1.8em;

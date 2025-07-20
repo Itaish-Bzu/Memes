@@ -1,5 +1,9 @@
-.main-footer{
-    text-align: center;
-    padding: 1rem;
-    margin-block-start: 1em;
+.main-footer {
+  
+  text-align: center;
+  margin-block-start: 1em;
+  /* background-color: var(--clr-primary--1); */
+  padding-inline: 2em;
+  padding-block: 1em;
+  border-radius: 0.625rem;
 }
