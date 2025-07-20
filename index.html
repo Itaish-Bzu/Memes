@@ -15,7 +15,7 @@
       <div class="logo">Meme Generator</div>
       <div class="main-nav flex">
           <button class="btn" onclick="onShowGallery()">Gallery</button>
-          <button class="btn" onclick="onMemes()">Saved</button>
+          <button class="btn" onclick="onSaveMemes()">Saved</button>
           <button class="btn" onclick="onRandom()">Randomize</button>
       
         </div>
@@ -56,7 +56,14 @@
       <div class="editor hide" >
         <div class="editor-section flex direction">
           <section class="canvas-container">
-            <canvas class="canvas" width="300" height="300" onclick="onTextEdit(event)"></canvas>
+            <canvas class="canvas" width="300" height="300" 
+                  onmousedown="onDown(event)"
+      ontouchstart="onDown(event)"
+      onmouseup="onUp()" 
+      ontouchend="onUp()" 
+      onmousemove="onMove(event)"
+      ontouchmove="onMove(event)"
+            ></canvas>
           </section>
 
           <section class="canvas-editor flex direction">
@@ -79,15 +86,18 @@
             <div class="advance-tools ">
               <button class="btn" onclick="onPosition(-10)">⬆</button>
               <button class="btn" onclick="onPosition(+10)">⬇ </button>
-              <button class="btn" onclick="onIncrease(1)">A+</button>
-              <button class="btn" onclick="onIncrease(-1)">A-</button>
+              <button class="btn" onclick="onchangeFontSize(1)">A+</button>
+              <button class="btn" onclick="onchangeFontSize(-1)">A-</button>
               <button class="btn" onclick="onAlignment('left')">⮜</button>
               <button class="btn" onclick="onAlignment('right')"> ⮞</button>
               <button class="btn" onclick="onAlignment('center')"> ⇔  </button>
               <input class="color btn" type="color" name="color"  id="color"  oninput="onChangColor(this.value)" />
 
               
-            </div>
+            </div class="stickers">
+            
+
+            <div>
 
             <div class="save-section flex ">
               <button class="btn" onclick="onSave()">Save</button>

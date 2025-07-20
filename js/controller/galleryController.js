@@ -1,15 +1,16 @@
 'use strict'
 
 let gFilter = ''
-let gImgIdx = 18
+
 
 function onShowGallery() {
   show('gallery')
+ if(document.querySelector('body').classList.contains('menu-open')) toggleMenu()
 }
 
 function renderGallery() {
   const imgs = getImgs(gFilter)
-  const upLoad =`	<input  class="btn" onchange="onImgInput(event)" type="file" accept=".jpg, .jpeg, .png, .webp" 	class="file-input btn" id="file-input" name="image"/>`
+  const upLoad = `	<input  class="btn" onchange="onImgInput(event)" type="file" accept=".jpg, .jpeg, .png, .webp" 	class="file-input btn" id="file-input" name="image"/>`
 
   const strHTML = imgs.map((img) => {
     return `<img src="${img.url}" onclick="onImgSelect(${img.id})" data-keys= ${img.keywords} >`
@@ -25,10 +26,9 @@ function onImgSelect(imgID) {
 }
 
 function onRandom() {
-
   const imgID = getRandomIntInclusive(1, gImgs.length)
   onImgSelect(imgID)
-
+if(document.querySelector('body').classList.contains('menu-open')) toggleMenu()
 }
 
 function onChoseFilter(val) {
@@ -36,24 +36,29 @@ function onChoseFilter(val) {
   renderGallery('gallery')
 }
 
-function onMemes() {
-  const imgs = saveMeme()
+function onSaveMemes() {
+  const imgs = getSaveMeme()
   const elContainer = document.querySelector('.saved-imgs')
-  
-  if(!imgs) {
-    elContainer.innerText ='No saved Images'
-  }else{
+
+  if (!imgs) {
+    elContainer.innerText = 'No saved Images'
+  } else {
     let strHTML = imgs.map((img) => {
-      return `<img src="${img.url}" onclick="onGetImg(${img.id})" data-keys= ${img.keywords} >`
+      return `<img src="${img.url}" onclick="onGetImg(${img.id})" data-keys= ${img.keywords} >
+      <button onclick="onDeleteMeme(${img.id})">Delete<button>`
     })
 
     elContainer.innerHTML = strHTML.join('')
   }
   show('saved-imgs')
-
+  if(document.querySelector('body').classList.contains('menu-open')) toggleMenu()
+}
+function onDeleteMeme(id) {
+  deleteMeme(id)
+  onSaveMemes()
 }
 
-function onGetImg(imgID){
+function onGetImg(imgID) {
   findMeme(imgID)
   renderMeme()
   show('editor')
@@ -76,35 +81,32 @@ function show(name) {
   document.querySelector(`.${name}`).classList.remove('hide')
 }
 
-
 function onImgInput(ev) {
-    loadImageFromInput(ev,  createImg)
+  loadImageFromInput(ev, createImg)
 }
 
 function loadImageFromInput(ev, onImageReady) {
-    const reader = new FileReader()
-    let idx = gImgs.length
+  const reader = new FileReader()
+  let idx = gImgs.length
 
-    reader.onload = (event) => {
-        const img = new Image()
-        img.src = event.target.result
+  reader.onload = (event) => {
+    const img = new Image()
+    img.src = event.target.result
 
-        img.onload = () => {
-            onImageReady(img)
-        }
+    img.onload = () => {
+      onImageReady(img)
     }
+  }
 
-    reader.readAsDataURL(ev.target.files[0])
-
+  reader.readAsDataURL(ev.target.files[0])
 }
 
-function createImg(img){
- let idx = gImgs.length
-  const uploadImg = 
-  {id:++idx,
-     url: img.src,
-      keywords: ['happy', 'dog']}
+function createImg(img) {
+  let idx = gImgs.length
+  const uploadImg = { id: ++idx, url: img.src, keywords: ['happy', 'dog'] }
 
-      gImgs.push(uploadImg)
-      renderGallery()
+  gImgs.push(uploadImg)
+  saveToStorage(IMAGES, gImgs)
+  renderGallery()
 }
+
