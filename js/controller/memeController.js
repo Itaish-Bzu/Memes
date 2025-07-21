@@ -3,8 +3,6 @@
 let gCanvas
 let gCtx
 let gisRemoveMode = false
-
-let gSetCircleDrag = false
 let gPrevPos
 
 function onInit() {
@@ -148,13 +146,18 @@ function onSave() {
 }
 
 function onUploadToFB() {
+  gisRemoveMode= true
+  renderMeme()
   const canvasData = gCanvas.toDataURL('image/jpeg')
   function onSuccess(uploadedImgUrl) {
     const encodedUploadedImgUrl = encodeURIComponent(uploadedImgUrl)
 
+
     window.open(
       `https://www.facebook.com/sharer/sharer.php?u=${encodedUploadedImgUrl}&t=${encodedUploadedImgUrl}`
+    
     )
+    gisRemoveMode=false
   }
   uploadImg(canvasData, onSuccess)
 }

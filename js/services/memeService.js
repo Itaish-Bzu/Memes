@@ -194,11 +194,15 @@ function createMeme(id) {
 
 
 function _createImgs() {
-  gImgs = []
+  gImgs = loadFromStorage(IMAGES)
+  if (!gImgs){
+     gImgs = []
   for (var i = 0; i < 18; i++) {
     const img = createImg()
     gImgs.push(img)
-  }
+  }}
+
+ 
 }
 
 function createImg() {

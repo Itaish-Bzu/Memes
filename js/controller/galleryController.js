@@ -105,7 +105,7 @@ function createImg(img) {
   let idx = gImgs.length
   const uploadImg = { id: ++idx, url: img.src, keywords: ['happy', 'dog'] }
 
-  gImgs.push(uploadImg)
+  gImgs.unshift(uploadImg)
   saveToStorage(IMAGES, gImgs)
   renderGallery()
 }
