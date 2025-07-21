@@ -9,8 +9,8 @@ function onInit() {
   gCanvas = document.querySelector('.canvas')
   gCtx = gCanvas.getContext('2d')
   renderGallery()
-  renderMeme()
-  window.addEventListener('resize', resizeCanvas)
+ 
+  window.addEventListener('resize',  renderMeme)
 }
 
 function renderMeme() {
@@ -31,11 +31,6 @@ function renderMeme() {
   }
 }
 
-function resizeCanvas() {
-  const elContainer = document.querySelector('.canvas-container')
-  gCanvas.width = elContainer.clientWidth
-  renderMeme()
-}
 
 function urlToImg(url) {
   const img = new Image()
