@@ -2,6 +2,8 @@
 
 A responsive meme generator web app built with **HTML5 Canvas**, CSS, and JavaScript.
 
+![Meme Generator Screenshot](img/demo.png)
+
 ## 🧰 Features
 
 - Choose/upload an image to use as the meme background.  
