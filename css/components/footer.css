@@ -1,9 +1,12 @@
 .main-footer {
-  
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
   text-align: center;
   margin-block-start: 1em;
-  /* background-color: var(--clr-primary--1); */
+  background-color: var(--clr-primary--1);
   padding-inline: 2em;
-  padding-block: 1em;
+  padding-block: 0.5em;
   border-radius: 0.625rem;
 }

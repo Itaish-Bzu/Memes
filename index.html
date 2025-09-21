@@ -4,29 +4,34 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Meme Generator</title>
-      <link rel="icon" type="image/x-icon" href="img/icon/icon.png">
+    <link rel="icon" type="image/x-icon" href="img/icon/icon.png" />
     <link rel="stylesheet" href="css/main.css" />
   </head>
 
   <body class="main-layout" onload="onInit()">
     <div class="shadow-screen" onclick="toggleMenu()"></div>
 
-    <header class="main-header full  flex">
+    <header class="main-header full flex">
       <div class="logo">Meme Generator</div>
       <div class="main-nav flex">
-          <button class="btn" onclick="onShowGallery()">Gallery</button>
-          <button class="btn" onclick="onSaveMemes()">Saved</button>
-          <button class="btn" onclick="onRandom()">Randomize</button>
-      
-        </div>
-        <button class="btn btn-toggle" onclick="toggleMenu()">☰</button>
+        <button class="btn" onclick="onShowGallery()">Gallery</button>
+        <button class="btn" onclick="onSaveMemes()">Saved</button>
+        <button class="btn" onclick="onRandom()">Randomize</button>
+      </div>
+      <button class="btn btn-toggle" onclick="toggleMenu()">☰</button>
     </header>
 
     <main class="main-container">
       <div class="gallery">
         <section class="search-img flex">
           <div class="search-gallery">
-            <input  list="search" type="text" name="search" placeholder="Search" oninput="onChoseFilter(this.value)"/>
+            <input
+              list="search"
+              type="text"
+              name="search"
+              placeholder="Search"
+              oninput="onChoseFilter(this.value)"
+            />
             <datalist id="search">
               <option value="Happy"></option>
               <option value="Sad"></option>
@@ -36,43 +41,56 @@
             </datalist>
           </div>
 
-          <div class="filter-btn flex ">
-            <button class="btn gallery-btn">Happy</button>
-            <button class="btn gallery-btn">Sad</button>
-            <button class="btn gallery-btn">Crazy</button>
-            <button class="btn gallery-btn">Sarcastic</button>
-            <button class="btn gallery-btn">Funny</button>
+          <div class="filter-btn flex">
+            <button class="btn gallery-btn" onclick="onChoseFilter('Happy')">Happy</button>
+            <button class="btn gallery-btn" onclick="onChoseFilter('Sad')">Sad</button>
+            <button class="btn gallery-btn" onclick="onChoseFilter('Crazy')">Crazy</button>
+            <button class="btn gallery-btn" onclick="onChoseFilter('Sarcastic')">Sarcastic</button>
+            <button class="btn gallery-btn" onclick="onChoseFilter('Funny')">Funny</button>
           </div>
         </section>
-        
+
         <section class="gallery-photo"></section>
       </div>
 
-      <div  class="saved-section "> 
+      <div class="saved-section">
         <section class="saved-imgs"></section>
       </div>
-     
 
-      <div class="editor hide" >
+      <div class="editor hide">
         <div class="editor-section flex direction">
           <section class="canvas-container">
-            <canvas class="canvas" width="300" height="300" 
-                  onmousedown="onDown(event)"
-      ontouchstart="onDown(event)"
-      onmouseup="onUp()" 
-      ontouchend="onUp()" 
-      onmousemove="onMove(event)"
-      ontouchmove="onMove(event)"
+            <canvas
+              class="canvas"
+              width="300"
+              height="300"
+              onmousedown="onDown(event)"
+              ontouchstart="onDown(event)"
+              onmouseup="onUp()"
+              ontouchend="onUp()"
+              onmousemove="onMove(event)"
+              ontouchmove="onMove(event)"
             ></canvas>
           </section>
 
           <section class="canvas-editor flex direction">
-            <input type="text" name="text" placeholder="Add text here" oninput="onSetLineTxt(this.value)" />
+            <input
+              type="text"
+              name="text"
+              class="text"
+              placeholder="Add text here"
+              oninput="onSetLineTxt(this.value)"
+            />
             <div class="tools flex">
               <button class="btn" onclick="onAddTxt()">+</button>
               <button class="btn" onclick="onSwitch()">↕</button>
               <button class="btn" onclick="onDeleted()">🗑</button>
-              <select class="font btn" name="font" id="font"  onchange="onFontChange(this.value)" >
+              <select
+                class="font btn"
+                name="font"
+                id="font"
+                onchange="onFontChange(this.value)"
+              >
                 <option value="">Impact</option>
                 <option value="ariel">Ariel</option>
                 <option value="serif">Serif</option>
@@ -82,29 +100,41 @@
                 <option value="courier">courier</option>
               </select>
             </div>
-            
-            <div class="advance-tools ">
+
+            <div class="advance-tools">
               <button class="btn" onclick="onPosition(-10)">⬆</button>
-              <button class="btn" onclick="onPosition(+10)">⬇ </button>
+              <button class="btn" onclick="onPosition(+10)">⬇</button>
               <button class="btn" onclick="onchangeFontSize(1)">A+</button>
               <button class="btn" onclick="onchangeFontSize(-1)">A-</button>
               <button class="btn" onclick="onAlignment('left')">⮜</button>
-              <button class="btn" onclick="onAlignment('right')"> ⮞</button>
-              <button class="btn" onclick="onAlignment('center')"> ⇔  </button>
-              <input class="color btn" type="color" name="color"  id="color"  oninput="onChangColor(this.value)" />
+              <button class="btn" onclick="onAlignment('right')">⮞</button>
+              <button class="btn" onclick="onAlignment('center')">⇔</button>
+              <input
+                class="color btn"
+                type="color"
+                name="color"
+                id="color"
+                oninput="onChangColor(this.value)"
+              />
             </div>
 
-            <div class="save-section flex ">
+            <div class="save-section flex">
               <button class="btn" onclick="onSave()">Save</button>
               <button class="btn" onclick="onUploadToFB()">Share</button>
-              <a  class="btn" href="#"  download="my-meme" onclick="onDownland(this)">Download</a>
+              <a
+                class="btn"
+                href="#"
+                download="my-meme"
+                onclick="onDownland(this)"
+                >Download</a
+              >
             </div>
           </section>
         </div>
       </div>
     </main>
 
-    <footer class="main-footer full"> © 2025 Itaish Bzunech</footer>
+    <footer class="main-footer full">© 2025 Itaish Bzunech</footer>
 
     <script src="js/services/util.service.js"></script>
     <script src="js/services/storege.servic.js"></script>

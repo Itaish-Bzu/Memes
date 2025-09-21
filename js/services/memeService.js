@@ -7,10 +7,8 @@ let gImgs
 let gIdx = 1
 let gMems = []
 
-
 _createImgs()
 saveToStorage(IMAGES, gImgs)
-
 
 var gKeywordSearchCountMap = { funny: 12, cat: 16, baby: 2 }
 
@@ -42,15 +40,15 @@ function changeSize(val) {
 }
 
 function addTxt() {
-const{lines}= gCurrMeme
-let idx = lines.length
+  const { lines } = gCurrMeme
+  let idx = lines.length
   const line = {
     txt: 'Add Text Here ',
     size: 30,
     color: 'black',
     txtAlign: 'left',
     x: gCanvas.width / 4,
-    y: ++idx* 40,
+    y: ++idx * 40,
   }
   gCurrMeme.lines.push(line)
   gCurrMeme.selectedLineIdx++
@@ -72,11 +70,11 @@ function getByIdx(currX) {
 
 function getAlign(position) {
   const line = getLine()
-  if (position === 'right'){
+  if (position === 'right') {
     line.x = gCanvas.width / 2
-  }else if (position === 'left'){
-    line.x = gCanvas.width /gCanvas.width
-  }else{
+  } else if (position === 'left') {
+    line.x = gCanvas.width / gCanvas.width
+  } else {
     line.x = gCanvas.width / 4
   }
 }
@@ -103,7 +101,8 @@ function getLine() {
   return gCurrMeme.lines[gCurrMeme.selectedLineIdx]
 }
 
-function savingMeme() {
+function savingMeme(url) {
+  gCurrMeme.url = url  
   gMems.push(gCurrMeme)
   saveToStorage(MEMES, gMems)
 }
@@ -120,7 +119,6 @@ function getImgs(filter) {
   return imgs
 }
 
-
 function getSaveMeme() {
   const memes = loadFromStorage(MEMES)
   if (!memes) return false
@@ -128,18 +126,19 @@ function getSaveMeme() {
 
   memes.forEach((meme) => {
     const img = getImg(meme.selectedImgId)
+    img.imgToShow = meme.url
     imgs.push(img)
   })
 
   return imgs
 }
 
- function deleteMeme(id){
-    const memes = loadFromStorage(MEMES)
-      const memeIdx = memes.findIndex((meme) => meme.selectedImgId === id)
-      gMems.splice(memeIdx, 1)
-      saveToStorage(MEMES,  gMems)
- }
+function deleteMeme(id) {
+  const memes = loadFromStorage(MEMES)
+  const memeIdx = memes.findIndex((meme) => meme.selectedImgId === id)
+  gMems.splice(memeIdx, 1)
+  saveToStorage(MEMES, gMems)
+}
 
 function findMeme(id) {
   const memes = loadFromStorage(MEMES)
@@ -149,30 +148,29 @@ function findMeme(id) {
 }
 
 function isTxtClicked(pos) {
-  const { lines } = getMeme()
+  const { lines } = getMeme()  
   const clickedTxt = lines.find((line) => {
     const width = gCtx.measureText(line.txt).width
+
     return (
       pos.x >= line.x &&
-      pos.x <= line.x + width &&
-      pos.y >= line.y - 50 &&
-      pos.y <= line.y
+      pos.x <= line.x + width*2 &&
+      pos.y >= line.y  &&
+      pos.y <= line.y + 100
     )
   })
   return clickedTxt
 }
 
-
-
-function moveTxt(dx, dy){
+function moveTxt(dx, dy) {
   const line = getLine()
-      line.x += dx
-    line.y += dy
+  line.x += dx
+  line.y += dy
 }
 
- function setTxtDrag(isDrag){
+function setTxtDrag(isDrag) {
   gCurrMeme.isDrag = isDrag
- }
+}
 
 function createMeme(id) {
   const meme = {
@@ -185,24 +183,22 @@ function createMeme(id) {
         color: 'black',
         txtAlign: 'left',
         x: gCanvas.width / 4,
-        y: 40,
+        y:40,
       },
     ],
   }
   gCurrMeme = meme
 }
 
-
 function _createImgs() {
   gImgs = loadFromStorage(IMAGES)
-  if (!gImgs){
-     gImgs = []
-  for (var i = 0; i < 18; i++) {
-    const img = createImg()
-    gImgs.push(img)
-  }}
-
- 
+  if (!gImgs) {
+    gImgs = []
+    for (var i = 0; i < 18; i++) {
+      const img = createImg()
+      gImgs.push(img)
+    }
+  }
 }
 
 function createImg() {

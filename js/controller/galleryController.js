@@ -2,16 +2,15 @@
 
 let gFilter = ''
 
-
 function onShowGallery() {
   show('gallery')
- if(document.querySelector('body').classList.contains('menu-open')) toggleMenu()
+  if (document.querySelector('body').classList.contains('menu-open'))
+    toggleMenu()
 }
 
 function renderGallery() {
   const imgs = getImgs(gFilter)
-  const upLoad = `	<input  class="btn" onchange="onImgInput(event)" type="file" accept=".jpg, .jpeg, .png, .webp" 	class="file-input btn" id="file-input" name="image"/>`
-
+  const upLoad = `<label for="file-input" class=" btn upload-btn">Upload Img</label>	<input onchange="onImgInput(event)" type="file" accept=".jpg, .jpeg, .png, .webp" 	class="file-input btn" id="file-input" name="image" hidden/>`
   const strHTML = imgs.map((img) => {
     return `<img src="${img.url}" onclick="onImgSelect(${img.id})" data-keys= ${img.keywords} >`
   })
@@ -22,13 +21,15 @@ function renderGallery() {
 function onImgSelect(imgID) {
   memeServiceSetImg(+imgID)
   renderMeme()
+  reset()
   show('editor')
 }
 
 function onRandom() {
   const imgID = getRandomIntInclusive(1, gImgs.length)
   onImgSelect(imgID)
-if(document.querySelector('body').classList.contains('menu-open')) toggleMenu()
+  if (document.querySelector('body').classList.contains('menu-open'))
+    toggleMenu()
 }
 
 function onChoseFilter(val) {
@@ -40,18 +41,19 @@ function onSaveMemes() {
   const imgs = getSaveMeme()
   const elContainer = document.querySelector('.saved-imgs')
 
-  if (!imgs) {
+  if (!imgs || !imgs.length) {
     elContainer.innerText = 'No saved Images'
   } else {
     let strHTML = imgs.map((img) => {
-      return `<img src="${img.url}" onclick="onGetImg(${img.id})" data-keys= ${img.keywords} >
-      <button onclick="onDeleteMeme(${img.id})">Delete<button>`
+      return `<img src="${img.imgToShow}" onclick="onGetImg(${img.id})" data-keys= ${img.keywords} >
+     <div> <button class=" btn saved-btn" onclick="onDeleteMeme(${img.id})">Delete</button></div>`
     })
 
     elContainer.innerHTML = strHTML.join('')
   }
   show('saved-imgs')
-  if(document.querySelector('body').classList.contains('menu-open')) toggleMenu()
+  if (document.querySelector('body').classList.contains('menu-open'))
+    toggleMenu()
 }
 function onDeleteMeme(id) {
   deleteMeme(id)
@@ -61,6 +63,7 @@ function onDeleteMeme(id) {
 function onGetImg(imgID) {
   findMeme(imgID)
   renderMeme()
+  reset()
   show('editor')
 }
 
@@ -109,4 +112,3 @@ function createImg(img) {
   saveToStorage(IMAGES, gImgs)
   renderGallery()
 }
-

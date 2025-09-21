@@ -2,35 +2,35 @@
 
 let gCanvas
 let gCtx
-let gisRemoveMode = false
+let gIsRemoveMode
 let gPrevPos
 
 function onInit() {
   gCanvas = document.querySelector('.canvas')
   gCtx = gCanvas.getContext('2d')
+  gIsRemoveMode = false
   renderGallery()
- 
-  window.addEventListener('resize',  renderMeme)
+  window.addEventListener('resize', renderMeme)
 }
 
-function renderMeme() {
+function renderMeme(mode=false) {
   if (!getMeme()) return
   const { selectedImgId: memeId, lines } = getMeme()
   const { url } = getImg(memeId)
   let img = urlToImg(url)
-
   img.onload = () => {
+    gIsRemoveMode = mode
     gCanvas.height = (img.naturalHeight / img.naturalWidth) * gCanvas.width
     gCtx.drawImage(img, 0, 0, gCanvas.width, gCanvas.height)
 
     lines.forEach((line) => {
       const { txt, color, size, txtAlign, font } = line
       drawText(txt, color, size, line.x, line.y, txtAlign, font)
-    })
-    if (!gisRemoveMode) renderRect()
+    }) 
+    if (!gIsRemoveMode) renderRect()
+    
   }
 }
-
 
 function urlToImg(url) {
   const img = new Image()
@@ -56,17 +56,24 @@ function onSetLineTxt(val) {
   if (!val) val = 'Add Text Here'
   setLineTxt(val)
   renderMeme()
+  reset()
+}
+
+function reset(){
+  const elText = document.querySelector('.text')
+  elText.value=''
+  // if (document.activeElement !== elText) elText.value=''
 }
 
 function onDownland(elLink) {
-  gisRemoveMode = true
+  gIsRemoveMode = true
   renderMeme()
   const dataUrl = gCanvas.toDataURL()
 
   elLink.href = dataUrl
-  gisRemoveMode = false
+  gIsRemoveMode = false
 
-  gisRemoveMode = true
+  gIsRemoveMode = true
 }
 
 function onChangColor(color) {
@@ -114,7 +121,6 @@ function renderRect() {
 
 function onPosition(diff) {
   changPosition(+diff)
-
   renderMeme()
 }
 
@@ -134,29 +140,27 @@ function onDeleted() {
 }
 
 function onSave() {
-  gisRemoveMode = true
-  renderMeme()
-  savingMeme()
-  gisRemoveMode = false
+  renderMeme(true)
+  setTimeout(() => {
+    const canvasUrl = gCanvas.toDataURL('image/jpeg')
+    savingMeme(canvasUrl)
+    gIsRemoveMode = false
+  }, 1000);
 }
 
 function onUploadToFB() {
-  gisRemoveMode= true
-  renderMeme()
+  renderMeme(true)
   const canvasData = gCanvas.toDataURL('image/jpeg')
   function onSuccess(uploadedImgUrl) {
     const encodedUploadedImgUrl = encodeURIComponent(uploadedImgUrl)
 
-
     window.open(
       `https://www.facebook.com/sharer/sharer.php?u=${encodedUploadedImgUrl}&t=${encodedUploadedImgUrl}`
-    
     )
-    gisRemoveMode=false
+    gIsRemoveMode = false
   }
   uploadImg(canvasData, onSuccess)
 }
-
 
 function getEvPos(ev) {
   const TOUCH_EVS = ['touchstart', 'touchmove', 'touchend']
@@ -178,21 +182,17 @@ function getEvPos(ev) {
 }
 
 function onDown(ev) {
-  const pos = getEvPos(ev)
-
+  const pos = getEvPos(ev)  
   if (!isTxtClicked(pos)) return
-
   const clickedTxt = isTxtClicked(pos)
   const idx = getByIdx(clickedTxt.y)
   const meme = getMeme()
   meme.selectedLineIdx = idx
-  document.querySelector('.canvas-editor').querySelector('[name=text]').value = clickedTxt.txt
-
-
+  document.querySelector('.canvas-editor').querySelector('[name=text]').value =
+    clickedTxt.txt
 
   setTxtDrag(true)
   gPrevPos = pos
-
 }
 
 function onMove(ev) {

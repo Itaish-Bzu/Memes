@@ -1,31 +1,29 @@
-
- .search-img {
-    width: 100%;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding-block: 1em;
-    gap: 5px;
-} 
+.search-img {
+  width: 100%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-block: 1em;
+  gap: 5px;
+}
 
 .search-gallery input {
   width: 80vw;
-  padding:1rem;
+  padding: 1rem;
   border-radius: 1em;
-  font-size:1rem;
+  font-size: 1rem;
   border: none;
-} 
+}
 
 .filter-btn {
   justify-content: center;
-  font-size:1rem;
+  font-size: 1rem;
 }
 
 .gallery-btn {
   border: none;
   padding: 0;
 }
-
 
 .gallery-photo {
   display: grid;
@@ -44,6 +42,11 @@
   gap: 20px;
   padding-inline: 50px;
   margin-top: 1rem;
-  justify-items: center;
+  justify-items: start;
   align-items: center;
+}
+
+.saved-btn {
+  font-size: 0.8em;
+  padding: 0.3em 0.5em;
 }
