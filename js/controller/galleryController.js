@@ -10,7 +10,7 @@ function onShowGallery() {
 
 function renderGallery() {
   const imgs = getImgs(gFilter)
-  const upLoad = `<label for="file-input" class=" btn upload-btn">Upload Img</label>	<input onchange="onImgInput(event)" type="file" accept=".jpg, .jpeg, .png, .webp" 	class="file-input btn" id="file-input" name="image" hidden/>`
+  const upLoad = `<label for="file-input" class=" btn upload-btn">Upload Image</label>	<input onchange="onImgInput(event)" type="file" accept=".jpg, .jpeg, .png, .webp" 	class="file-input btn" id="file-input" name="image" hidden/>`
   const strHTML = imgs.map((img) => {
     return `<img src="${img.url}" onclick="onImgSelect(${img.id})" data-keys= ${img.keywords} >`
   })
